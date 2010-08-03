@@ -1,0 +1,228 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="1.2"
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+
+    <navigation-rule>
+        <!-- RH | Ponto -->
+        <navigation-case>
+            <from-outcome>frequencia</from-outcome>
+            <to-view-id>/rh/ponto/frequenciaRelatorio.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>funcionarioOcorrencia</from-outcome>
+            <to-view-id>/rh/ponto/funcionarioOcorrencia.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>registrarFuncionarioOcorrencia</from-outcome>
+            <to-view-id>/rh/ponto/registrarFuncionarioOcorrencia.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>autorizarOcorrencia</from-outcome>
+            <to-view-id>/rh/ponto/autorizarOcorrencia.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>       
+
+        <navigation-case>
+            <from-outcome>relatorioFrequencia</from-outcome>
+            <to-view-id>/rh/ponto/relatorioFrequencia.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+        
+       <!-- RH | Adm Ponto | Importacoes -->
+        <navigation-case>
+            <from-outcome>importarDadosRelogio</from-outcome>
+            <to-view-id>/rh/ponto/admin/importacoes/importarDadosRelogio.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>importarOcorrencia</from-outcome>
+            <to-view-id>/rh/ponto/admin/importacoes/importarOcorrencia.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <!-- RH | Adm Ponto | Ocorrencias -->
+        <navigation-case>
+            <from-outcome>validarOcorrencia</from-outcome>
+            <to-view-id>/rh/ponto/admin/ocorrencias/validarOcorrencia.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>registrarOcorrencia</from-outcome>
+            <to-view-id>/rh/ponto/admin/ocorrencias/registrarOcorrencia.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>consultarOcorrencia</from-outcome>
+            <to-view-id>/rh/ponto/admin/ocorrencias/consultarOcorrencia.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>excluirOcorrencia</from-outcome>
+            <to-view-id>/rh/ponto/admin/ocorrencias/excluirOcorrencia.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>registrarOcorrenciaPorLotacao</from-outcome>
+            <to-view-id>/rh/ponto/admin/ocorrencias/registrarOcorrenciaPorLotacao.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>encerrarMes</from-outcome>
+            <to-view-id>/rh/ponto/admin/encerrarMes.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <!-- RH | Adm Ponto | Cadastros -->
+        <navigation-case>
+            <from-outcome>feriados</from-outcome>
+            <to-view-id>/rh/ponto/admin/cadastros/feriados.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>gradesHorarios</from-outcome>
+            <to-view-id>/rh/ponto/admin/cadastros/gradesHorarios.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>grades</from-outcome>
+            <to-view-id>/rh/ponto/admin/cadastros/grades.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>funcionarios</from-outcome>
+            <to-view-id>/rh/ponto/admin/cadastros/funcionarios.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>horariosEspeciais</from-outcome>
+            <to-view-id>/rh/ponto/admin/cadastros/horariosEspeciais.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>escalas</from-outcome>
+            <to-view-id>/rh/ponto/admin/cadastros/escalas.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>orgaos</from-outcome>
+            <to-view-id>/rh/ponto/admin/cadastros/orgaos.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>lotacoes</from-outcome>
+            <to-view-id>/rh/ponto/admin/cadastros/lotacoes.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <!-- RH | Adm Ponto | Relatorios -->
+        <navigation-case>
+            <from-outcome>relatorioFuncionario</from-outcome>
+            <to-view-id>/rh/ponto/admin/relatorios/relatorioFuncionario.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>relatorioAdicionalNoturno</from-outcome>
+            <to-view-id>/rh/ponto/admin/relatorios/relatorioAdicionalNoturno.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+        
+        <!-- public -->
+        <navigation-case>
+            <from-outcome>frequenciaPonto</from-outcome>
+            <to-view-id>/public/frequenciaRelatorioPonto.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <managed-bean>
+        <managed-bean-name>autorizarOcorrenciaBackBean</managed-bean-name>
+        <managed-bean-class>der.ponto.backBeans.AutorizarOcorrenciaBackBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>encerrarMesBackBean</managed-bean-name>
+        <managed-bean-class>der.ponto.backBeans.EncerrarMesBackBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>funcionarioOcorrenciaBackBean</managed-bean-name>
+        <managed-bean-class>der.ponto.backBeans.FuncionarioOcorrenciaBackBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>gradesBackBean</managed-bean-name>
+        <managed-bean-class>der.ponto.backBeans.GradesBackBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>importarOcorrenciaBackBean</managed-bean-name>
+        <managed-bean-class>der.ponto.backBeans.ImportarOcorrenciaBackBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>registroOcorrenciaBackBean</managed-bean-name>
+        <managed-bean-class>der.ponto.backBeans.RegistroOcorrenciaBackBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>relatorioFrequenciaBackBean</managed-bean-name>
+        <managed-bean-class>der.ponto.backBeans.RelatorioFrequenciaBackBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>relatorioFuncionarioBackBean</managed-bean-name>
+        <managed-bean-class>der.ponto.backBeans.RelatorioFuncionarioBackBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>validarOcorrenciaBackBean</managed-bean-name>
+        <managed-bean-class>der.ponto.backBeans.ValidarOcorrenciaBackBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>registroOcorrenciaPorLotacaoBackBean</managed-bean-name>
+        <managed-bean-class>der.ponto.backBeans.RegistroOcorrenciaPorLotacaoBackBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>loginFuncionarioBean</managed-bean-name>
+        <managed-bean-class>der.ponto.backBeans.LoginFuncionarioBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>relatorioAdicionalNoturnoBackBean</managed-bean-name>
+        <managed-bean-class>der.ponto.backBeans.RelatorioAdicionalNoturnoBackBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope></managed-bean>
+</faces-config>

@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:der="http://components.custom/der">
+    <body>
+        <ui:composition template="#{SessionBean.templateViewId}">
+            <ui:define name="central">
+                <rich:panel id="importarOcorrencias">
+                    <f:facet name="header"><h:outputText value="Importar Ocorrências"/></f:facet>
+                    <h:form id="myform">
+                        <h:panelGrid columns="2">
+                            <h:outputLabel for="dataInicialInput"
+                                           value="Data Inicial:" />
+                            <der:inputDate id="dataInicialInput"
+                                           value="#{importarOcorrenciaBackBean.dataInicial}"
+                                           required="true"/>
+
+                            <h:outputLabel for="dataFinalInput"
+                                           value="Data Final:" />
+                            <der:inputDate id="dataFinalInput"
+                                           value="#{importarOcorrenciaBackBean.dataFinal}"
+                                           required="true"/>
+
+                            <h:outputLabel for="motivoInput"
+                                           value="Motivo:" />
+                            <h:selectOneMenu id="motivoInput"
+                                             required=""
+                                             value="#{importarOcorrenciaBackBean.motivo}">
+                                <!--<f:selectItems value="#{registroOcorrenciaBackBean.listaMotivos}" />-->
+                                <f:selectItem id="ferias" itemLabel="Férias" itemValue="F" />
+                                <f:selectItem id="licenca_especial" itemLabel="Licença Especial" itemValue="E" />
+                                <f:selectItem id="licenca_saude" itemLabel="Licença Saúde" itemValue="L" />
+                                <f:selectItem id="viagem" itemLabel="Viagem a Serviço" itemValue="V" />
+                            </h:selectOneMenu>
+
+                            <h:outputLabel for="lotacaoInput"
+                                           value="Lotação:" />
+                            <h:selectOneMenu id="lotacaoInput"
+                                             required=""
+                                             value="#{importarOcorrenciaBackBean.lotacao}">
+                                <f:selectItem itemLabel="Todos" itemValue="" />
+                                <f:selectItems value="#{importarOcorrenciaBackBean.actionListaSetorSRH()}" />
+                            </h:selectOneMenu>
+
+                        </h:panelGrid>
+                        <h:commandButton action="#{importarOcorrenciaBackBean.actionListaOcorrenciaSRH}"
+                                         value="Pesquisar" />
+                        <h:commandButton action="#{importarOcorrenciaBackBean.actionMarcarTodasOcorrencias}"
+                                         value="Marcar Todas as Ocorrências"
+                                         rendered="#{importarOcorrenciaBackBean.importaOcorrencias.size() > 0}"/>
+                        <h:commandButton action="#{importarOcorrenciaBackBean.actionImportaOcorrenciaSRH}"
+                                         value="Importar Ocorrências Selecionadas"
+                                         rendered="#{importarOcorrenciaBackBean.importaOcorrencias.size() > 0}"/>
+
+                        <br />
+                        <br />
+
+                        <rich:dataTable border="1"
+                                        value="#{importarOcorrenciaBackBean.importaOcorrencias}"
+                                        var="row"
+                                        rows="50"
+                                        id="Ocorrencias"
+                                        rendered="#{importarOcorrenciaBackBean.importaOcorrencias.size() > 0}">
+                            <f:facet name="header">Lista de Ocorrências</f:facet>
+                            <rich:column style="text-align:center;">
+                                <f:facet name="header">
+                                    <h:outputText value="Selecione" />
+                                </f:facet>
+                                <h:selectBooleanCheckbox value="#{row.selected}"/>
+                            </rich:column>
+
+                            <rich:column>
+                                <f:facet name="header">Funcionário</f:facet>
+                                <h:outputText value="#{row.nome}" />
+                            </rich:column>
+                            <rich:column>
+                                <f:facet name="header">Matrícula</f:facet>
+                                <h:outputText value="#{row.matricula}" />
+                            </rich:column>
+
+                            <rich:column>
+                                <f:facet name="header">Data Início</f:facet>
+                                <h:outputText id="inputDataInicio"
+                                              value="#{row.dataInicio}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy"
+                                                       type="date"
+                                                       locale="pt,BR"
+                                                       timeZone="America/Fortaleza" />
+                                </h:outputText>
+                            </rich:column>
+
+                            <rich:column>
+                                <f:facet name="header">Data Final</f:facet>
+                                <h:outputText id="inputDataFinal"
+                                              value="#{row.dataFinal}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy"
+                                                       type="date"
+                                                       locale="pt,BR"
+                                                       timeZone="America/Fortaleza" />
+                                </h:outputText>
+                            </rich:column>
+
+                            <rich:column>
+                                <f:facet name="header">Lotação</f:facet>
+                                <h:outputText name="inputDescricao" value="#{row.lotacao}" />
+                            </rich:column>
+
+                            <f:facet name="footer">
+                                <rich:datascroller for="Ocorrencias" />
+                            </f:facet>
+                        </rich:dataTable>
+
+                    </h:form>
+                </rich:panel>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

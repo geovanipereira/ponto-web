@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <!-- Configuração Geral da Aplicação -->
+    <description>Sistema de Controle de Ponto</description>
+    <display-name>Ponto - Ponto Eletrônico</display-name>
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+    <welcome-file-list>
+        <welcome-file>forward.jsp</welcome-file>
+    </welcome-file-list>
+    
+    <context-param>
+        <param-name>javax.faces.CONFIG_FILES</param-name>
+        <param-value>/WEB-INF/config/faces-config.xml,
+            /WEB-INF/config/faces-config-auditoria.xml,
+            /WEB-INF/config/faces-config-security.xml,            
+            /WEB-INF/config/faces-config-rh-ponto.xml
+        </param-value>
+    </context-param>
+
+    <!-- Customizacao de componentes -->
+    <context-param>
+        <description>Componentes</description>
+        <param-name>facelets.LIBRARIES</param-name>
+        <param-value>/WEB-INF/components.taglib.xml</param-value>
+    </context-param>
+    
+    <!-- Configurações do Entities -->
+    <filter>
+        <filter-name>Upload Filter</filter-name>
+        <filter-class>entities.gui.jsf.components.UploadFilter</filter-class>
+        <init-param>
+            <param-name>sizeThreshold</param-name>
+            <param-value>1024</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>Upload Filter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- Configuração do JBoss Seam -->
+    <context-param>
+        <description>Habilita o uso de EL com passagem de parametros</description>
+        <param-name>com.sun.faces.expressionFactory</param-name>
+        <param-value>org.jboss.el.ExpressionFactoryImpl</param-value>
+    </context-param>
+
+    <listener>
+        <description>Deve ser o primeiro filter no web.xml</description>
+        <listener-class>org.jboss.seam.servlet.SeamListener</listener-class>
+    </listener>
+
+    <filter>
+        <filter-name>Seam Filter</filter-name>
+        <filter-class>org.jboss.seam.servlet.SeamFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>Seam Filter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <servlet>
+        <servlet-name>Seam Resource Servlet</servlet-name>
+        <servlet-class>org.jboss.seam.servlet.SeamResourceServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Seam Resource Servlet</servlet-name>
+        <url-pattern>/seam/resource/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <description>Para uso do s:download e s:resource</description>
+        <servlet-name>Document Store Servlet</servlet-name>
+        <servlet-class>org.jboss.seam.document.DocumentStoreServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Document Store Servlet</servlet-name>
+        <url-pattern>/seam/docstore/*</url-pattern>
+    </servlet-mapping>
+    <!-- Fim da Configuração do JBoss Seam -->
+
+    <!-- Configuração do JSF -->
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.jsf</url-pattern>
+    </servlet-mapping>
+
+    <context-param>
+        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>client</param-value>
+    </context-param>
+
+    <!-- Configuração do JSF/Facelets -->
+    <context-param>
+        <description>Verifica se os objetos da aplicação (conversores, etc) foram criados adequadamente</description>
+        <param-name>com.sun.faces.verifyObjects</param-name>
+        <param-value>false</param-value>
+    </context-param>
+
+    <context-param>
+        <description>Verifica a integridade do arquivo faces-config.xml</description>
+        <param-name>com.sun.faces.validateXml</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+        <param-value>.xhtml</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>facelets.DEVELOPMENT</param-name>
+        <param-value>false</param-value>
+    </context-param>
+
+    <context-param>
+        <description>Ignora os comentário dos arquivos XHTML</description>
+        <param-name>facelets.SKIP_COMMENTS</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <security-constraint>
+        <display-name>Restrict raw XHTML Documents</display-name>
+        <web-resource-collection>
+            <web-resource-name>XHTML</web-resource-name>
+            <url-pattern>*.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint/>
+    </security-constraint>
+    <!-- fim de Configuração do Facelets -->
+
+    <!-- Configuração do RichFaces -->
+    <filter>
+        <display-name>RichFaces Filter</display-name>
+        <filter-name>richfaces</filter-name>
+        <filter-class>org.ajax4jsf.Filter</filter-class>
+
+        <init-param>
+            <param-name>createTempFiles</param-name>
+            <param-value>true</param-value>
+        </init-param>
+
+        <init-param>
+            <param-name>maxRequestSize</param-name>
+            <param-value>1073741824</param-value>
+        </init-param>
+        <!--
+        <init-param>
+            <description>
+              This JSF richfaces optimization tip to enable cache richfaces components
+              at client side and boost up significant performance hit.
+            </description>
+            <param-name>enable-cache</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        -->
+        <!--
+        <init-param>
+            <description>
+               This can be minimized by setting the forceparser setting to false.
+            In that case only AJAX responses will be ‘tidied’. In the other case all JSF responses
+            are ‘tidied’. That is because the filter is mapped on the Faces servlet:
+            This can be used for partial page rendering.
+            </description>
+            <param-name>forceparser</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        -->
+    </filter>
+
+    <filter-mapping>
+        <filter-name>richfaces</filter-name>
+        <servlet-name>Faces Servlet</servlet-name>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>
+
+    <context-param>
+        <param-name>org.richfaces.SKIN</param-name>
+        <param-value>#{SessionBean.skin}</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>org.richfaces.CONTROL_SKINNING</param-name>
+        <param-value>enable</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>org.ajax4jsf.VIEW_HANDLERS</param-name>
+        <param-value>com.sun.facelets.FaceletViewHandler</param-value>
+    </context-param>
+
+    <context-param>
+        <description>
+            This config will enforce the container to compress all the richfaces resources
+            including images, stylesheets, javascript to be compressed before sending to client.
+            It will make significant reduced load time.
+        </description>
+        <param-name>org.ajax4jsf.COMPRESS_SCRIPT</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <!--
+    <context-param>
+        <description>
+            This configuration will make sure that all style related files should be loaded at
+            client side at once on first request when richfaces application is accessed.
+        </description>
+        <param-name>org.richfaces.LoadStyleStrategy</param-name>
+        <param-value>all</param-value>
+    </context-param>
+
+    <context-param>
+        <description>
+           This JSF richfaces optimization tip will make sure that all the javascript, files &
+           libraries assosiated with richfaces should be downloaded at client side
+           at the time of first request from client.
+        </description>
+        <param-name>org.richfaces.LoadScriptStrategy</param-name>
+        <param-value>all</param-value>
+    </context-param>
+    -->
+
+    <!-- Outras Configurações -->
+    <servlet>
+        <servlet-name>Jenia internal servlet</servlet-name>
+        <servlet-class>org.jenia.faces.util.Servlet</servlet-class>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Jenia internal servlet</servlet-name>
+        <url-pattern>/jenia4faces/*</url-pattern>
+    </servlet-mapping>
+
+    <error-page>
+        <location>/public/error.xhtml</location>
+    </error-page>
+
+    <!-- Controle de Acesso -->
+    <context-param>
+        <description>Classe de autenticação do usuário : login/senha</description>
+       <param-name>IAuthenticate</param-name>
+        <param-value>faces.security.AuthenticatePonto</param-value>
+    </context-param>
+
+    <!-- Parametro para Autenticacao via rede -->
+    <context-param>
+        <description>IP do hostname da rede para autenticação</description>
+        <param-name>Authentication_hostname</param-name>
+        <param-value>172.25.144.10</param-value>
+    </context-param>
+
+    <context-param>
+        <description>Nome do dominio de rede para autenticação</description>
+        <param-name>Authentication_domain</param-name>
+        <param-value>DER;</param-value>
+    </context-param>
+    
+    <listener>
+        <description>Session counter para registrar login e logout do usuário</description>
+        <listener-class>der.auditoria.backBeans.SessionCounter</listener-class>
+    </listener>
+</web-app>

@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:der="http://components.custom/der">
+    <body>
+        <ui:composition template="#{SessionBean.templateViewId}">
+            <ui:define name="central">
+                <rich:panel id="ocorrencia">
+                    <f:facet name="header">Registro de Ocorrências</f:facet>
+                    <h:form id="formParams" name="formParams">
+                        <h:panelGrid columns="2"
+                                     align="left">
+                            <h:outputLabel for="dataInicialInput"
+                                           value="Data Inicial:" />
+                            <der:inputDate id="dataInicialInput"
+                                           value="#{funcionarioOcorrenciaBackBean.dataInicial}"
+                                           required="true"/>
+
+                            <h:outputLabel for="dataFinalInput"
+                                           value="Data Final:" />
+                            <der:inputDate id="dataFinalInput"
+                                           value="#{funcionarioOcorrenciaBackBean.dataFinal}"
+                                           required="true"/>
+
+                            <h:outputLabel for="motivoInput"
+                                           value="Motivo:" />
+                            <h:selectOneMenu id="motivoInput"
+                                             required=""
+                                             value="#{funcionarioOcorrenciaBackBean.ocorrenciaForm.motivo}">
+                                <f:selectItem id="atestado" itemLabel="Atestado" itemValue="A" />
+                                <f:selectItem id="justificativa" itemLabel="Justificativa" itemValue="J" />
+                                <f:selectItem id="servico" itemLabel="Serviço (Saída)" itemValue="S" />
+                                <f:selectItem id="treinamento" itemLabel="Treinamento" itemValue="T" />
+                            </h:selectOneMenu>
+
+                            <h:outputLabel for="descricaoInput"
+                                           value="Descrição:" />
+                            <h:inputText id="descricaoInput"
+                                         value="#{funcionarioOcorrenciaBackBean.ocorrenciaForm.descricao}"
+                                         size="70" />
+                            <h:panelGroup/>
+                            <h:panelGrid columns="2" style="text-align:center;" border="1">
+                                <h:outputLabel value="1o Expediente"/>
+                                <h:outputLabel value="2o Expediente"/>
+                                <h:panelGroup>
+                                    <h:panelGrid columns="2">
+                                        <h:outputLabel value="Entrada"/>
+                                        <h:outputLabel value="Saída"/>
+                                        <h:selectBooleanCheckbox value="#{funcionarioOcorrenciaBackBean.entrada1}"/>
+                                        <h:selectBooleanCheckbox value="#{funcionarioOcorrenciaBackBean.saida1}"/>
+                                    </h:panelGrid>
+                                </h:panelGroup>
+                                <h:panelGroup>
+                                    <h:panelGrid columns="2">
+                                        <h:outputLabel value="Entrada"/>
+                                        <h:outputLabel value="Saída"/>
+                                        <h:selectBooleanCheckbox value="#{funcionarioOcorrenciaBackBean.entrada2}"/>
+                                        <h:selectBooleanCheckbox value="#{funcionarioOcorrenciaBackBean.saida2}"/>
+                                    </h:panelGrid>
+                                </h:panelGroup>
+                            </h:panelGrid>
+
+                        </h:panelGrid>
+                        <br />
+                        <h:commandButton id="gravaOcorrencia"
+                                         action="#{funcionarioOcorrenciaBackBean.actionGravaOcorrencia}"
+                                         value="Gravar" />
+                        <h:commandButton action="funcionarioOcorrencia" value="Voltar" immediate="true" />
+                    </h:form>
+                </rich:panel>
+                <rich:spacer height="30" />
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

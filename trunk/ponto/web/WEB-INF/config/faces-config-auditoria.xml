@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="1.2" 
+    xmlns="http://java.sun.com/xml/ns/javaee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+    
+     <navigation-rule>
+         <navigation-case>
+            <from-outcome>consultarAuditoria</from-outcome>
+            <to-view-id>/auditoria/consultarAuditoria.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>consultarLogAcesso</from-outcome>
+            <to-view-id>/auditoria/consultarLogAcesso.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+     </navigation-rule>
+
+    <!-- Banck Beans --> 
+    <managed-bean>
+        <managed-bean-name>auditoriaBackBean</managed-bean-name>
+        <managed-bean-class>der.auditoria.backBeans.AuditoriaBackBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+   
+</faces-config>

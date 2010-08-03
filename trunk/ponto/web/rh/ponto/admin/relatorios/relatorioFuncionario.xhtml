@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:der="http://components.custom/der">
+    <body>
+        <ui:composition template="#{SessionBean.templateViewId}">
+            <ui:define name="central">
+                <rich:spacer height="1"/>
+                <a4j:outputPanel id="mainOutputPanel"
+                                 ajaxRendered="true">
+                    <rich:panel id="relatorioFrequencia">
+                        <f:facet name="header">Relatório de Funcionários</f:facet>
+                        <h:form id="formRelatorio"
+                                name="formRelatorio">
+                            <h:panelGrid columns="2">
+                                <h:outputLabel for="lotacaoInput" rendered="true" value="Lotação:" />
+                                <h:selectOneMenu id="lotacaoInput" required=""
+                                                 value="#{relatorioFuncionarioBackBean.lotacao}"
+                                                 converter="EntityConverter">
+                                    <f:selectItem itemLabel="Todos" itemValue=""/>
+                                    <f:selectItems value="#{entityBackBean.getSelectItems('From der.ponto.Lotacao l Order By l.sigla')}"/>
+                                </h:selectOneMenu>
+                            </h:panelGrid>
+                            <h:commandButton id="imprimir" action="#{relatorioFuncionarioBackBean.actionReport}" value="Visualizar" />
+                        </h:form>
+                    </rich:panel>
+                </a4j:outputPanel>
+                <rich:spacer height="20" />
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

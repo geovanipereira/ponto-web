@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <body>
+        <ui:composition template="#{SessionBean.templateViewId}">
+            <ui:define name="central">
+                <h:form>
+                    <rich:panel id="panelGroup1"
+                                rowsPerPage="10"
+                                rowsSelect="-1"
+                                rowClasses="odd-row,even-row"
+                                oql="der.acesso.User"
+                                binding="#{entityBackBean.entityPanel}"
+                                requestLive="true"
+                                header="Roles">
+                        <rich:dataTable binding="#{entityBackBean.dataTable}"
+                                        border="1">
+                            <rich:column>
+                                <f:facet name="header">Roles</f:facet>
+                                <rich:dataList var="item"
+                                               value="#{dataItem.roles}"
+                                               rendered="#{!entityBackBean.editModeRow}">
+                                    <h:outputText value="#{item}"/>
+                                </rich:dataList>
+                                <rich:pickList value="#{dataItem.roles}"
+                                               rendered="#{entityBackBean.editModeRow}"
+                                               converter="EntityConverter">
+                                    <f:selectItems value="#{entityBackBean.getSelectItems('From der.acesso.Role')}"/>
+                                </rich:pickList>
+                            </rich:column>
+                        </rich:dataTable>
+                    </rich:panel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

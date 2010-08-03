@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:der="http://components.custom/der">
+    <body>
+        <ui:composition template="#{SessionBean.templateViewId}">
+            <ui:define name="central">
+                <rich:panel id="ocorrencia">
+                    <f:facet name="header">Registro de Ocorrências por Lotação</f:facet>
+                    <h:form id="formParams" name="formParams">
+                        <h:panelGrid columns="2"
+                                     align="left">
+                            <h:outputLabel for="dataInput"
+                                           value="Data:" />
+                            <der:inputDate id="dataInput"
+                                           value="#{registroOcorrenciaPorLotacaoBackBean.data}"
+                                           required="true"/>
+
+                            <h:outputLabel for="motivoInput"
+                                           value="Motivo:" />
+                            <h:selectOneMenu id="motivoInput"
+                                             required=""
+                                             value="#{registroOcorrenciaPorLotacaoBackBean.motivo}">
+                                <f:selectItems value="#{registroOcorrenciaBackBean.listaMotivos}" />
+                            </h:selectOneMenu>
+
+                            <h:outputLabel for="descricaoInput"
+                                           value="Descrição:" />
+                            <h:inputText id="descricaoInput"
+                                         value="#{registroOcorrenciaPorLotacaoBackBean.descricao}"
+                                         size="70" />
+                        </h:panelGrid>
+
+                        <h:outputLabel value=" Lotação:" />
+                        <div id="lotacaoInput" class="listaLotacao">
+                            <h:selectManyCheckbox value="#{registroOcorrenciaPorLotacaoBackBean.lotacaos}" converter="EntityConverter" layout="pageDirection">
+                                <f:selectItems value="#{entityBackBean.getSelectItems('From der.ponto.Lotacao l')}"/>
+                            </h:selectManyCheckbox>
+                        </div>
+
+                        <h:panelGrid columns="2"
+                                     align="left">
+
+                            <h:panelGroup/>
+                            <h:panelGrid columns="2" style="text-align:center;" border="1">
+                                <h:outputLabel value="Manhã"/>
+                                <h:outputLabel value="Tarde"/>
+                                <h:panelGroup>
+                                    <h:panelGrid columns="2">
+                                        <h:outputLabel value="Entrada"/>
+                                        <h:outputLabel value="Saída"/>
+                                        <h:selectBooleanCheckbox value="#{registroOcorrenciaPorLotacaoBackBean.entrada1}"/>
+                                        <h:selectBooleanCheckbox value="#{registroOcorrenciaPorLotacaoBackBean.saida1}"/>
+                                    </h:panelGrid>
+                                </h:panelGroup>
+                                <h:panelGroup>
+                                    <h:panelGrid columns="2">
+                                        <h:outputLabel value="Entrada"/>
+                                        <h:outputLabel value="Saída"/>
+                                        <h:selectBooleanCheckbox value="#{registroOcorrenciaPorLotacaoBackBean.entrada2}"/>
+                                        <h:selectBooleanCheckbox value="#{registroOcorrenciaPorLotacaoBackBean.saida2}"/>
+                                    </h:panelGrid>
+                                </h:panelGroup>
+                            </h:panelGrid>
+
+                        </h:panelGrid>
+                        <br />
+                        <h:commandButton id="gravaOcorrencia"
+                                         action="#{registroOcorrenciaPorLotacaoBackBean.actionGravarOcorrencia}"
+                                         value="Gravar" />
+                    </h:form>
+                </rich:panel>
+                <rich:spacer height="30" />
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

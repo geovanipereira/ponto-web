@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:der="http://components.custom/der"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <body>
+        <ui:composition template="#{SessionBean.templateViewId}">
+            <ui:define name="central">
+                <h:form id="form">
+                    <rich:panel id="panelGroup1">
+                        <f:facet name="header">Minhas Ocorrências</f:facet>
+
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Data Inicial :" />
+                            <der:inputDate id="inputDataInicial"
+                                           value="#{funcionarioOcorrenciaBackBean.dataInicial}"
+                                           required="true"/>
+
+                            <h:outputLabel value="Data Final :" />
+                            <der:inputDate id="inputDataFinal"
+                                           value="#{funcionarioOcorrenciaBackBean.dataFinal}"
+                                           required="true"/>
+
+                            <h:outputLabel for="statusInput" rendered="true" value="Situação:" />
+                            <h:selectOneMenu id="statusInput" required="false"
+                                             value="#{funcionarioOcorrenciaBackBean.statusOcorrencia}"
+                                             converter="EntityConverter">
+                                <f:selectItem itemLabel="Todas" itemValue=""/>
+                                <f:selectItems value="#{entityBackBean.getSelectItems('From der.ponto.StatusOcorrencia so Order By so.descricao')}"/>
+                            </h:selectOneMenu>
+
+                        </h:panelGrid>
+                        <h:commandButton value="Consultar"
+                                         action="#{funcionarioOcorrenciaBackBean.actionPesquisaOcorrencia}"/>
+                        
+                        <br />
+                        <br />
+                        <rich:dataTable var="dataItem"
+                                        value="#{funcionarioOcorrenciaBackBean.ocorrencias}"
+                                        border="1"
+                                        rendered="#{funcionarioOcorrenciaBackBean.ocorrencias.size() > 0}">
+                            <f:facet name="header">Lista de Ocorrências</f:facet>
+                            <rich:column>
+                                <f:facet name="header">Data</f:facet>
+                                <der:inputDate id="inputData"
+                                               value="#{dataItem.dataOcorrencia}"
+                                               readonly="true"/>
+                            </rich:column>
+
+                            <rich:column>
+                                <f:facet name="header">Entrada</f:facet>
+                                <der:inputTime id="inputRetorno"
+                                               value="#{dataItem.saida}"
+                                               readonly="true"/>
+                            </rich:column>
+
+                            <rich:column>
+                                <f:facet name="header">Saída</f:facet>
+                                <der:inputTime id="inputSaida"
+                                               value="#{dataItem.retorno}"
+                                               readonly="true"/>
+                            </rich:column>
+
+                            <rich:column>
+                                <f:facet name="header">Motivo</f:facet>
+                                <h:outputText value="#{dataItem.motivo}" />
+                            </rich:column>
+
+                            <rich:column>
+                                <f:facet name="header">Descrição</f:facet>
+                                <h:outputText value="#{dataItem.descricao}" />
+                            </rich:column>
+
+                            <rich:column>
+                                <f:facet name="header">Situação</f:facet>
+                                <h:outputText value="#{dataItem.status}" />
+                            </rich:column>
+
+                            <rich:column>
+                                <f:facet name="header">Observação RH</f:facet>
+                                <h:outputText value="#{dataItem.observacaoRH}" />
+                            </rich:column>
+
+                            <rich:column>
+                                <f:facet name="header">Ação</f:facet>
+                                <h:commandButton value="Excluir"
+                                                 action="#{funcionarioOcorrenciaBackBean.actionExcluirOcorrencia(dataItem)}"
+                                                 onclick="if(window.confirm('Deseja excluir realmente?')){return true;} else {return false;}" />
+                            </rich:column>
+                        </rich:dataTable>
+                    </rich:panel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
