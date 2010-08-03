@@ -1,5 +1,6 @@
 package der.ponto;
 
+import entities.annotations.ParameterDescriptor;
 import entities.annotations.PropertyDescriptor;
 import entities.annotations.View;
 import entities.annotations.Views;
@@ -63,7 +64,10 @@ public class Batida implements Serializable {
         this.numeroRelogio = numeroRelogio;
     }
 
-    static public String importarBatidas(InputStream stream) throws IOException, ParseException, DAOValidationException, DAOConstraintException, DAOException {
+    static public String importarBatidas(
+            @ParameterDescriptor(displayName="Arquivo")
+            InputStream stream)
+            throws IOException, ParseException, DAOValidationException, DAOConstraintException, DAOException {
         Set<Batida> batidas = new HashSet<Batida>();
         BufferedReader leitor = null;
 

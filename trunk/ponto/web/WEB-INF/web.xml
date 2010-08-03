@@ -235,7 +235,7 @@
     </context-param>
     -->
 
-    <!-- Outras Configurações -->
+    <!-- Outras Configurações -->    
     <servlet>
         <servlet-name>Jenia internal servlet</servlet-name>
         <servlet-class>org.jenia.faces.util.Servlet</servlet-class>

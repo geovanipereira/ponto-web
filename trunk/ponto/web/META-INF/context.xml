@@ -1,2 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context antiJARLocking="true" path="/ponto"/>
+<Context antiJARLocking="true" path="/ponto">
+    <!--<Context antiJARLocking="false" antiResourceLocking="false" privileged="true">-->
+
+    <Resource  name="jdbc/postgres-ds"
+               auth="Container"
+               maxActive="5"
+               maxIdle="30"
+               maxWait="10000"
+               scope="Shareable"
+               type="javax.sql.DataSource"
+               driverClassName="org.postgresql.Driver"
+               url="jdbc:postgresql://localhost:5432/postgres"
+               username="postgres"
+               password="postgres" />
+
+</Context>

@@ -5,8 +5,8 @@
         <Node id="public/help.xhtml" x="3150" y="1050" zoom="true"/>
         <Node id="rh/ponto/admin/importacoes/importarDadosRelogio.xhtml" x="2650" y="1050" zoom="true"/>
         <Node id="public/login.xhtml" x="400" y="900" zoom="true"/>
-        <Node id="rh/ponto/admin/cadastros/escalas.xhtml" x="3150" y="300" zoom="true"/>
         <Node id="rh/ponto/admin/cadastros/gradesHorarios.jsf" x="650" y="750" zoom="true"/>
+        <Node id="rh/ponto/admin/cadastros/escalas.xhtml" x="3150" y="300" zoom="true"/>
         <Node id="rh/ponto/admin/importacoes/importarDadosRelogio.jsf" x="650" y="600" zoom="true"/>
         <Node id="rh/ponto/admin/cadastros/horariosEspeciais.jsf" x="1150" y="300" zoom="true"/>
         <Node id="rh/ponto/admin/ocorrencias/validarOcorrencia.xhtml" x="1400" y="1950" zoom="true"/>
@@ -14,8 +14,8 @@
         <Node id="rh/ponto/frequenciaRelatorio.xhtml" x="2150" y="600" zoom="true"/>
         <Node id="templates/template.xhtml" x="400" y="1350" zoom="true"/>
         <Node id="rh/ponto/admin/encerrarMes.xhtml" x="4650" y="300" zoom="true"/>
-        <Node id="auditoria/consultarLogAcesso.xhtml" x="3400" y="1200" zoom="true"/>
         <Node id="rh/ponto/relatorioFrequencia.jsf" x="900" y="150" zoom="true"/>
+        <Node id="auditoria/consultarLogAcesso.xhtml" x="3400" y="1200" zoom="true"/>
         <Node id="public/home.xhtml" x="3150" y="450" zoom="true"/>
         <Node id="rh/ponto/admin/cadastros/feriados.jsf" x="400" y="450" zoom="true"/>
         <Node id="rh/ponto/funcionarioOcorrencia.jsf" x="900" y="300" zoom="true"/>
@@ -42,8 +42,8 @@
         <Node id="rh/ponto/frequenciaRelatorio.jsf" x="1400" y="150" zoom="true"/>
         <Node id="rh/ponto/registrarFuncionarioOcorrencia.xhtml" x="1150" y="1200" zoom="true"/>
         <Node id="rh/ponto/admin/ocorrencias/excluirOcorrencia.xhtml" x="2900" y="300" zoom="true"/>
-        <Node id="rh/ponto/admin/importacoes/importarOcorrencia.xhtml" x="1150" y="750" zoom="true"/>
         <Node id="rh/ponto/admin/cadastros/escalas.jsf" x="400" y="150" zoom="true"/>
+        <Node id="rh/ponto/admin/importacoes/importarOcorrencia.xhtml" x="1150" y="750" zoom="true"/>
         <Node id="rh/ponto/admin/ocorrencias/consultarOcorrencia.xhtml" x="650" y="2550" zoom="true"/>
         <Node id="auditoria/consultarAuditoria.xhtml" x="2150" y="1050" zoom="true"/>
         <Node id="rh/ponto/admin/cadastros/funcionarios.jsf" x="400" y="300" zoom="true"/>
