@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <body>
+        <ui:composition>
+            <h:panelGroup>
+                <rich:calendar id="#{id}"
+                               enableManualInput="true"
+                               datePattern="dd/MM/yyyy"
+                               value="#{value}"
+                               required="#{required==null ? false : required}"
+                               readonly="#{readonly==null ? false : readonly}"
+                               inputSize="#{size==null ? 8 : size}"
+                               inputClass="inputDate#{id}">
+
+                    <a4j:loadScript src="resource:///util/jsf/js/jquery.maskedinput.js"/>
+                    
+                    <f:convertDateTime pattern="dd/MM/yyyy"
+                                       type="date"
+                                       locale="pt,BR"
+                                       timeZone="America/Fortaleza" />                    
+                </rich:calendar>
+
+                <rich:jQuery selector=".inputDate#{id}"
+                             query="mask('99/99/9999')"
+                             timing="onload" />
+            </h:panelGroup>
+        </ui:composition>
+    </body>
+</html>

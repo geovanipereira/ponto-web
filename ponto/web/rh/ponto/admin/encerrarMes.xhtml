@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:model="http://components.custom/der">
+    <body>
+        <ui:composition template="#{SessionBean.templateViewId}">            
+            <ui:define name="central">
+                <rich:panel id="ocorrencia">
+                    <f:facet name="header">Encerrar Mês</f:facet>
+                    <h:form>                        
+                        <h:panelGrid columns="2" align="left">
+                            <h:outputLabel for="anoInput" value="Ano:" />
+                            <h:inputText id="anoInput" size="" value="#{encerrarMesBackBean.ano}" required="" />
+
+                            <h:outputLabel for="mesInput" value="Mês:" />
+                            <h:selectOneMenu id="mesInput" required="" value="#{encerrarMesBackBean.mes}">
+                                <f:selectItems value="#{encerrarMesBackBean.listaMeses}" />
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                        <h:commandButton id="encerrarMes" action="#{encerrarMesBackBean.gravarEncerramentoMes}" value="Gravar" />
+                        <br />
+                        <br />
+                        <h3><h:outputText value="Mês Processado"/></h3>                        
+                        <rich:dataTable border="1" var="registro" value="#{encerrarMesBackBean.actionListaMesProcessado()}">
+                             <f:facet name="header">
+                                 <rich:columnGroup>
+                                     <rich:column>
+                                         <h:outputText value="Mês Processado" />
+                                     </rich:column>
+                                     <rich:column>
+                                         <h:outputText value="Ação" />
+                                     </rich:column>
+                                 </rich:columnGroup>
+                             </f:facet>
+
+                             <rich:column>
+                                <h:outputText value="#{registro.dataMes}">
+                                    <f:convertDateTime pattern="MM/yyyy" />
+                                </h:outputText>
+                             </rich:column>
+
+                             <rich:column>
+                                 <h:commandLink id="deletar" action="#{encerrarMesBackBean.deletaMesProcessado(registro)}" immediate="true">
+                                     Deletar
+                                 </h:commandLink>
+                             </rich:column>
+                        </rich:dataTable>
+
+                    </h:form>
+                </rich:panel>
+                <rich:spacer height="30" />
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

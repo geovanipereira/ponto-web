@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:der="http://components.custom/der"
+      xmlns:jq="http://www.jquery4jsf.org/jsf">
+    <body>
+        <ui:composition template="#{SessionBean.templateViewId}">
+            <ui:define name="central">
+                <script type="text/javascript">
+                    function carregaData(){
+                        mydate = new Date();
+                        mymonth = mydate.getMonth();
+                        myyear = mydate.getFullYear();
+
+                        meses = new Array(12);
+
+                        meses[0] = "01";
+                        meses[1] = "02";
+                        meses[2] = "03";
+                        meses[3] = "04";
+                        meses[4] = "05";
+                        meses[5] = "06";
+                        meses[6] = "07";
+                        meses[7] = "08";
+                        meses[8] = "09";
+                        meses[9] = "10";
+                        meses[10] = "11";
+                        meses[11] = "12";
+
+                        document.getElementById('formParams:inputDataInicialInputDate').value = '01/' + meses[mymonth] + '/' + myyear;
+
+                        diaMesFinal = verificaMes();
+
+                        document.getElementById('formParams:inputDataFinalInputDate').value = diaMesFinal + '/' + meses[mymonth] + '/' + myyear;
+                    }
+                </script>
+                <rich:spacer height="1"/>
+                <a4j:outputPanel id="mainOutputPanel"
+                                 ajaxRendered="true">
+                    <rich:panel id="frequencia">
+                        <f:facet name="header">Consulta de Frequências.</f:facet>
+                        <h:form id="formParams"
+                                name="formParams">
+                            <a4j:loadScript src="../../js/utilData.js" />
+                            <h:panelGrid columns="2">
+                                <h:outputLabel for="matriculaInput"
+                                               value="Matrícula:" />
+                                <h:inputText id="matriculaInput"
+                                             value="#{loginFuncionarioBean.matricula}"
+                                             readonly="true" />
+
+                                <h:outputLabel for="nomeInput"
+                                               value="Funcionário:" />
+                                <h:inputText id="nomeInput"
+                                             value="#{SessionBean.login.name}"
+                                             size="50"
+                                             readonly="true" />
+                            </h:panelGrid>
+                            <rich:spacer height="1"/>
+                            <h:panelGrid columns="3">
+                                <h:outputLabel value="Data Inicial :" />
+
+                                <der:inputDate id="inputDataInicial"
+                                               value="#{relatorioFrequenciaBackBean.dataInicial}"
+                                               required="true"/>
+                                <h:message id="messageErrorDataInicial"
+                                           for="inputDataInicial" />
+
+                                <h:outputLabel value="Data Final :" />
+                                <der:inputDate id="inputDataFinal"
+                                               value="#{relatorioFrequenciaBackBean.dataFinal}"
+                                               required="true"/>
+
+                                <h:message id="messageErrorDataFinal"
+                                           for="inputDataFinal" />
+                            </h:panelGrid>
+                            <h:commandButton id="imprimir"
+                                             action="#{relatorioFrequenciaBackBean.actionReportFrequenciaFuncionario}"
+                                             value="Visualizar"/>
+                        </h:form>
+                    </rich:panel>
+                </a4j:outputPanel>
+                <rich:spacer height="20" />
+                <script type="text/javascript">
+                    carregaData();
+                </script>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

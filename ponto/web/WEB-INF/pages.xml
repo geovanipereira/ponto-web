@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pages xmlns="http://jboss.com/products/seam/pages" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.1.xsd"
+       no-conversation-view-id="/public/home.xhtml"
+       login-view-id="/public/login.xhtml">
+
+    <page view-id="/admin/*" login-required="true" />
+    <page view-id="/auditoria/*" login-required="true" />
+    <page view-id="/public/*" login-required="false"/>
+    <page view-id="/rh/*" login-required="true" />
+
+    <page view-id="/admin/*">
+        <restrict>#{s:hasRole('ADMIN')}</restrict>
+    </page>
+
+    <page view-id="/rh/ponto/admin/*">
+        <restrict>#{s:hasRole('RH')}</restrict>
+    </page>
+
+    <exception class="org.jboss.seam.security.NotLoggedInException">
+        <redirect view-id="/public/login.xhtml"/>
+    </exception>
+
+    <exception class="org.jboss.seam.security.AuthorizationException">
+        <redirect/>
+    </exception>
+
+    <exception class="der.DerException">
+        <redirect>
+            <message severity="WARN">#{org.jboss.seam.handledException.message}</message>
+        </redirect>
+    </exception>
+    
+    <exception class="org.jboss.seam.framework.EntityNotFoundException">
+        <redirect view-id="/public/home.xhtml">
+            <message severity="error">Not found</message>
+        </redirect>
+    </exception>
+
+    <exception class="javax.persistence.EntityNotFoundException">
+        <redirect view-id="/public/home.xhtml">
+            <message severity="fatal">Not found</message>
+        </redirect>
+    </exception>
+
+    <exception class="javax.persistence.OptimisticLockException">
+        <end-conversation />
+
+        <redirect view-id="/public/home.xhtml">
+            <message severity="fatal">Um outro usuário modificou os mesmos dados, por favor tente novamente</message>
+        </redirect>
+    </exception>
+
+    <exception class="entities.dao.DAOException">
+        <redirect view-id="/public/error.xhtml">
+            <message severity="FATAL">#{org.jboss.seam.handledException.message}</message>
+        </redirect>
+    </exception>
+
+    <exception class="entities.dao.DAOConstraintException">
+        <redirect view-id="/public/error.xhtml">
+            <message severity="WARN">#{org.jboss.seam.handledException.message}</message>
+        </redirect>
+    </exception>
+
+    <exception class="entities.dao.DAOValidationException">
+        <redirect>
+            <message severity="WARN">#{org.jboss.seam.handledException.message}</message>
+        </redirect>
+    </exception>
+
+    <exception>
+        <redirect view-id="/public/error.xhtml">
+            <message severity="fatal">Acontenceu um erro inesperado</message>
+        </redirect>
+    </exception>
+</pages>

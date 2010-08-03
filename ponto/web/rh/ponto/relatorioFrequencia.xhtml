@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:der="http://components.custom/der">
+    <body>
+        <ui:composition template="#{SessionBean.templateViewId}">
+            <ui:define name="central">
+                <rich:spacer height="1"/>
+                <a4j:outputPanel id="mainOutputPanel"
+                                 ajaxRendered="true">
+                    <rich:panel id="relatorioFrequencia">
+                        <f:facet name="header">Relatório de Frequências</f:facet>
+                        <h:form id="formRelatorio"
+                                name="formRelatorio">
+                            <a4j:region immediate="true"
+                                        renderRegionOnly="true">
+                                <h:panelGrid columns="2">
+                                    <h:outputLabel for="servidorInput"
+                                                   value="Funcionário" />
+                                    <h:inputText id="servidorInput"
+                                                 value="#{registroOcorrenciaBackBean.ocorrenciaForm.funcionario.nomeCompleto}"
+                                                 size="40"
+                                                 onkeyup="this.value = this.value.toUpperCase()">
+                                        <rich:suggestionbox ajaxSingle="true"
+                                                            height="200"
+                                                            width="260"
+                                                            for="servidorInput"
+                                                            var="servidor"
+                                                            suggestionAction="#{registroOcorrenciaBackBean.autoCompleteServidor}"
+                                                            fetchValue="#{servidor.nomeCompleto}"
+                                                            frequency="1"
+                                                            selfRendered="true"
+                                                            nothingLabel="Registro Não Encontrado"
+                                                            id="suggestion">
+                                            <h:column>
+                                                <h:outputText value="#{servidor.matricula}" />
+                                            </h:column>
+                                            <h:column>
+                                                <h:outputText value="#{servidor.nomeCompleto}"/>
+                                            </h:column>
+                                            <a4j:support event="onselect" reRender="inputMatricula">
+                                                <f:setPropertyActionListener value="#{servidor.matricula}" target="#{relatorioFrequenciaBackBean.matricula}" />
+                                            </a4j:support>
+                                        </rich:suggestionbox>
+                                    </h:inputText>
+
+                                    <h:outputLabel for="inputMatricula" value="Matrícula" />
+                                    <h:inputText id="inputMatricula" value="#{relatorioFrequenciaBackBean.matricula}" />
+                                </h:panelGrid>
+                            </a4j:region>
+                            <br />
+                            <h:panelGrid columns="2">
+                                <h:outputLabel for="lotacaoInput" rendered="true" value="Lotação:" />
+                                <h:selectOneMenu id="lotacaoInput" required=""
+                                                 value="#{relatorioFrequenciaBackBean.params['lotacao']}"
+                                                 converter="EntityConverter">
+                                    <f:selectItem itemLabel="Todos" itemValue=""/>
+                                    <f:selectItems value="#{entityBackBean.getSelectItems('From der.ponto.Lotacao l Order By l.sigla')}"/>
+                                </h:selectOneMenu>
+                                
+                                <h:outputLabel value="Data Inicial :" />
+                                <der:inputDate id="inputDataInicial"
+                                               value="#{relatorioFrequenciaBackBean.dataInicial}"
+                                               required="true"/>
+
+                                <h:outputLabel value="Data Final :" />
+                                <der:inputDate id="inputDataFinal"
+                                               value="#{relatorioFrequenciaBackBean.dataFinal}"
+                                               required="true"/>
+
+                                <h:outputLabel value="Frequência :" />
+                                <h:selectOneMenu value="#{relatorioFrequenciaBackBean.params['frequencia']}">
+                                    <f:selectItem itemLabel="Todas" itemValue="todas"/>
+                                    <f:selectItem itemLabel="Incompletas" itemValue="pontoIncompleto"/>
+                                    <f:selectItem itemLabel="Faltas" itemValue="falta"/>
+                                </h:selectOneMenu>
+                            </h:panelGrid>
+                            <h:commandButton id="imprimir" action="#{relatorioFrequenciaBackBean.actionReport}" value="Visualizar" />
+                        </h:form>
+                    </rich:panel>
+                </a4j:outputPanel>
+                <rich:spacer height="20" />
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

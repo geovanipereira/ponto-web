@@ -1,0 +1,76 @@
+Configurando tomcat para ambiente de desenvolvimento
+
+Pasta do Tomcat : 
+-----------------
+C:\Documents and Settings\<user-name>\.netbeans\<netbens-version>\apache-tomcat-<version>_base\
+
+copiar os drivers dos BD para a pasta \nblib : 
+----------------------------------------------
+  jtds-1.2.2.jar (Driver SQL Server)
+  ojdbc14.jar (Driver Oracle)
+  postgis-1.5.0SVN.jar (Driver PostGis)
+  postgresql-8.3-603.jdbc3.jar (Driver PostGres)
+
+Na pasta \conf :
+----------------
+Adicionar no final do arquivo context.xml :
+===========================================
+
+   <Resource name="jdbc/postgres-ds"
+              auth="Container"
+              scope="Shareable"
+              type="javax.sql.DataSource"
+              username="postgres"
+              password="postgres"
+              driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql://172.25.144.14:5432/postgres"
+              maxActive="100"
+              maxIdle="30"
+              maxWait="10000"/>
+
+    <Resource name="jdbc/postgis-ds"
+                  auth="Container"
+                  scope="Shareable"
+                  type="javax.sql.DataSource"
+                  username="postgres"
+                  password="postgres"
+                  driverClassName="org.postgresql.Driver"
+                  url="jdbc:postgresql://172.25.144.14:5432/postgis"
+                  maxActive="100"
+                  maxIdle="30"
+                  maxWait="10000"/>
+
+    <Resource name="jdbc/auditoria-ds"
+                  auth="Container"
+                  scope="Shareable"
+                  type="javax.sql.DataSource"
+                  username="postgres"
+                  password="postgres"
+                  driverClassName="org.postgresql.Driver"
+                  url="jdbc:postgresql://172.25.144.14:5432/postgres"
+                  maxActive="100"
+                  maxIdle="30"
+                  maxWait="10000"/>
+
+E no final do arquivo web.xml :
+===============================
+  <resource-ref>
+     <res-ref-name>jdbc/postgres-ds</res-ref-name>
+     <res-type>javax.sql.DataSource</res-type>
+     <res-auth>Container</res-auth>
+  </resource-ref>
+
+  <resource-ref>
+     <res-ref-name>jdbc/postgis-ds</res-ref-name>
+     <res-type>javax.sql.DataSource</res-type>
+     <res-auth>Container</res-auth>
+  </resource-ref>
+
+  <resource-ref>
+     <res-ref-name>jdbc/auditoria-ds</res-ref-name>
+     <res-type>javax.sql.DataSource</res-type>
+     <res-auth>Container</res-auth>
+  </resource-ref>
+
+FIM
+---

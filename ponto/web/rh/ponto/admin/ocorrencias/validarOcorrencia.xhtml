@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:der="http://components.custom/der">
+    <body>
+        <ui:composition template="#{SessionBean.templateViewId}">
+            <ui:define name="central">
+                <rich:panel id="validarJustificativaPanel">
+                    <f:facet name="header"><h:outputText value="Validar Justificativas"/></f:facet>
+                    <h:form id="myform">
+                        <h:panelGrid columns="2">
+                            <h:outputLabel for="lotacaoInput" rendered="true" value="Lotação:" />
+                            <h:selectOneMenu id="lotacaoInput" required=""
+                                             value="#{validarOcorrenciaBackBean.lotacao}"
+                                             converter="EntityConverter">
+                                <f:selectItem itemLabel="Todos" itemValue=""/>
+                                <f:selectItems value="#{entityBackBean.getSelectItems('From der.ponto.Lotacao l Order By l.sigla')}"/>
+                            </h:selectOneMenu>
+
+                            <h:outputLabel for="motivoInput"
+                                           value="Motivo:" />
+                            <h:selectOneMenu id="motivoInput"
+                                             required=""
+                                             value="#{validarOcorrenciaBackBean.motivo}">
+                                <!--<f:selectItems value="#{registroOcorrenciaBackBean.listaMotivos}" />-->
+                                <f:selectItem id="todos" itemLabel="Todos" itemValue="" />
+                                <f:selectItem id="atestado" itemLabel="Atestado" itemValue="A" />
+                                <f:selectItem id="justificativa" itemLabel="Justificativa" itemValue="J" />
+                                <f:selectItem id="particular" itemLabel="Particular" itemValue="P" />
+                                <f:selectItem id="rota" itemLabel="Rota (Atraso)" itemValue="R" />
+                                <f:selectItem id="servico" itemLabel="Serviço (Saída)" itemValue="S" />
+                                <f:selectItem id="treinamento" itemLabel="Treinamento" itemValue="T" />
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                        <h:commandButton action="#{validarOcorrenciaBackBean.actionListaOcorrencia}" value="Pesquisar" />
+
+                        <h:commandButton action="#{validarOcorrenciaBackBean.actionMarcarTodasOcorrencias}"
+                                         value="Marcar Todas as Ocorrências"
+                                         rendered="#{validarOcorrenciaBackBean.listaOcorrencia.size() > 0}"/>
+
+                        <h:commandButton value="Validar os Selecionados"
+                                         action="#{validarOcorrenciaBackBean.actionValidarListaOcorrenciaSelecionado}"
+                                         rendered="#{validarOcorrenciaBackBean.listaOcorrencia.size() > 0}" />
+
+                        <h:commandButton value="Devolver os Selecionados"
+                                         action="#{validarOcorrenciaBackBean.actionDevolverListaOcorrenciaSelecionado}"
+                                         rendered="#{validarOcorrenciaBackBean.listaOcorrencia.size() > 0}" />
+                        <br />
+                        <br />
+                        <rich:dataTable id="dataTable" border="1"
+                                        value="#{validarOcorrenciaBackBean.listaOcorrencia}"
+                                        var="row"
+                                        rows="20"
+                                        rendered="#{validarOcorrenciaBackBean.listaOcorrencia.size() > 0}">
+                            <rich:column style="text-align:center;">
+                                <f:facet name="header">
+                                    <h:outputText value="Selecione" />
+                                </f:facet>
+                                <h:selectBooleanCheckbox value="#{row.selected}"/>
+                            </rich:column>
+                            <rich:column>
+                                <f:facet name="header">Matrícula</f:facet>
+                                <h:outputText value="#{row.funcionario.matricula}" />
+                            </rich:column>
+                            <rich:column>
+                                <f:facet name="header">Servidor</f:facet>
+                                <h:outputText value="#{row.funcionario.nomeCompleto}" />
+                            </rich:column>
+                            <rich:column>
+                                <f:facet name="header">Justificativa</f:facet>
+                                <h:outputText value="#{row.motivo}" />
+                            </rich:column>
+                            <rich:column>
+                                <f:facet name="header">Data</f:facet>
+                                <h:outputText id="inputDataOcorrencia"
+                                              value="#{row.dataOcorrencia}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy"
+                                                       type="date"
+                                                       locale="pt,BR"
+                                                       timeZone="America/Fortaleza" />
+                                    
+                                </h:outputText>
+                            </rich:column>
+                            <rich:column>
+                                <f:facet name="header">Entrada</f:facet>
+                                <der:inputTime id="inputSaida"
+                                               value="#{row.saida}"
+                                               readonly="true" />
+                            </rich:column>
+
+                            <rich:column>
+                                <f:facet name="header">Saída</f:facet>
+                                <der:inputTime id="inputRetorno"
+                                               value="#{row.retorno}"
+                                               readonly="true" />
+                            </rich:column>
+
+                            <rich:column>
+                                <f:facet name="header">Descrição</f:facet>
+                                <h:outputText name="inputDescricao" value="#{row.descricao}" />
+                            </rich:column>
+
+                            <rich:column>
+                                <f:facet name="header">Observação RH</f:facet>
+                                <h:inputText name="inputObservacao" value="#{row.observacaoRH}" />
+                            </rich:column>
+
+                            <f:facet name="footer">
+                                <rich:datascroller for="dataTable" />
+                            </f:facet>
+                        </rich:dataTable>
+                    </h:form>
+                </rich:panel>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

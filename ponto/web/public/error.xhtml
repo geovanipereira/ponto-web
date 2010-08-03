@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:der="http://components.custom/der"
+      xmlns:a4j="http://richfaces.org/a4j">
+    <body>
+        <ui:composition template="./../templates/template.xhtml">
+            
+            <ui:define name="central">
+                <a4j:outputPanel id="panelError">
+                    <h:outputText value="Favor Contactar com a CETIC: 3101-5770"/>
+                    <br/>
+                    <h:inputTextarea styleClass="stackTrace"
+                                     value="#{org.jboss.seam.exception.message}"
+                                     rendered="#{org.jboss.seam.exception.message}"/>
+                    <br/>
+                    <h:outputText value="org.jboss.seam.exception.class = #{org.jboss.seam.exception.class}"
+                                  rendered="#{not empty org.jboss.seam.exception.class}"/>
+                    <hr/>
+                    <h:outputText value="org.jboss.seam.handledException.class = #{org.jboss.seam.handledException.class}"
+                                  rendered="#{not empty org.jboss.seam.handledException.class}"/>
+                    <hr/>
+                    <h:outputText value="org.jboss.seam.exception.message = #{org.jboss.seam.exception.message}"
+                                  rendered="#{not empty org.jboss.seam.exception.message}"/>
+                    <hr/>
+                    <h:outputText value="org.jboss.seam.handledException = #{org.jboss.seam.handledException}"
+                                  rendered="#{not empty org.jboss.seam.handledException}"/>
+                    <hr/>
+                    <h:outputText value="org.jboss.seam.exception.rootCause = #{org.jboss.seam.exception.rootCause}"
+                                  rendered="#{not empty org.jboss.seam.exception.rootCause}"/>
+                    <hr/>
+                    <ol>
+                        <ui:repeat var="ex" value="#{org.jboss.seam.exception.rootCause.stackTrace}">
+                            <li>
+                                <h:outputText value="#{ex.className}:#{ex.lineNumber} #{ex.methodName}" />
+                            </li>
+                        </ui:repeat>
+                    </ol>
+                </a4j:outputPanel>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

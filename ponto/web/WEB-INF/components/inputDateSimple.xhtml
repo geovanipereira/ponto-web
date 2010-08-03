@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <body>
+        <ui:composition>
+            <h:inputText id="#{id}"
+                         size="#{size==null ? 10 : size}"
+                         value="#{value}"
+                         required="#{required==null ? false : required}"
+                         readonly="#{readonly==null ? false : readonly}">
+                <a4j:loadScript id="#{id}_js" src="resource:///util/jsf/js/jquery.maskedinput.js"/>
+                <rich:jQuery selector="##{id}"
+                             query="mask('99/99/9999')"
+                             timing="onload" />
+                <f:convertDateTime pattern="dd/MM/yyyy"
+                                   type="date"
+                                   locale="pt,BR"
+                                   timeZone="America/Fortaleza" />
+            </h:inputText>
+        </ui:composition>
+    </body>
+</html>

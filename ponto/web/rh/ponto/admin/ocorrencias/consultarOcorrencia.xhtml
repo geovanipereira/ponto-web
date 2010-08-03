@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:der="http://components.custom/der">
+    <body>
+        <ui:composition template="#{SessionBean.templateViewId}">
+            <ui:define name="central">
+                <rich:panel id="ocorrencia">
+                    <f:facet name="header">Consulta de Ocorrências</f:facet>
+                    <h:form id="formParams" name="formParams">
+                        <a4j:region immediate="true"
+                                    renderRegionOnly="true">
+                            <h:panelGrid columns="2"
+                                         align="left">
+                                <h:outputLabel for="servidorInput"
+                                               value="Servidor:" />
+                                <h:inputText id="servidorInput"
+                                             value="#{registroOcorrenciaBackBean.ocorrenciaForm.funcionario.nomeCompleto}"
+                                             size="40"
+                                             onkeyup="this.value = this.value.toUpperCase()">
+                                    <rich:suggestionbox ajaxSingle="true"
+                                                        height="200"
+                                                        width="260"
+                                                        for="servidorInput"
+                                                        var="servidor"
+                                                        suggestionAction="#{registroOcorrenciaBackBean.autoCompleteServidor}"
+                                                        fetchValue="#{servidor.nomeCompleto}"
+                                                        frequency="1"
+                                                        selfRendered="true"
+                                                        nothingLabel="Registro Não Encontrado"
+                                                        id="suggestion">
+                                        <h:column>
+                                            <h:outputText value="#{servidor.matriculaCompleta}" />
+                                        </h:column>
+                                        <h:column>
+                                            <h:outputText value="#{servidor.nomeCompleto}"/>
+                                        </h:column>
+                                        <a4j:support event="onselect"
+                                                     reRender="matriculaInput,gradeInput">
+                                            <f:setPropertyActionListener value="#{servidor.matriculaCompleta}"
+                                                                         target="#{entityBackBean.params['matriculaCompleta']}" />
+                                            <f:setPropertyActionListener value="#{servidor.gradeHorario}"
+                                                                         target="#{entityBackBean.params['gradeHorario']}" />
+                                        </a4j:support>
+                                    </rich:suggestionbox>
+                                </h:inputText>
+                                <h:outputLabel for="matriculaInput"
+                                               value="Matrícula:" />
+                                <h:inputText id="matriculaInput"
+                                             value="#{entityBackBean.params['matriculaCompleta']}" />
+                                <h:outputLabel for="gradeInput"
+                                               value="Grade:" />
+                                <h:inputText id="gradeInput" size="70" readonly="true"
+                                             value="#{entityBackBean.params['gradeHorario']}" />
+                            </h:panelGrid>
+                        </a4j:region>
+                        <rich:spacer height="1"/>
+                        <h:panelGrid columns="3">
+                            <h:outputLabel value="Data Inicial :" />
+                            <der:inputDate id="inputDataInicial"
+                                           value="#{entityBackBean.params['dataInicial']}"
+                                           required="true"/>
+                            <h:message id="messageErrorDataInicial"
+                                       for="inputDataInicial" />
+
+                            <h:outputLabel value="Data Final :" />
+                            <der:inputDate id="inputDataFinal"
+                                           value="#{entityBackBean.params['dataFinal']}"
+                                           required="true"/>
+
+                            <h:message id="messageErrorDataFinal"
+                                       for="inputDataFinal" />
+                        </h:panelGrid>
+                        <h:commandButton value="Consultar"
+                                         action="#{entityBackBean.actionRefresh}"/>
+                    </h:form>
+                    <h:form>
+                        <rich:panel id="panelGroup1"
+                                    rowsPerPage="30"
+                                    rowsSelect="0"
+                                    rowClasses="odd-row,even-row"
+                                    oql="From der.ponto.Ocorrencia o Where o.funcionario.matriculaCompleta = :matriculaCompleta And o.dataOcorrencia Between :dataInicial and :dataFinal Order by o.dataOcorrencia"
+                                    showProperties="dataOcorrencia,saida,retorno,motivo,descricao,status"
+                                    binding="#{entityBackBean.entityPanel}"
+                                    header="#{entityBackBean.dataList.size()} Ocorrências : #{entityBackBean.current} / #{entityBackBean.totalPages}">
+                            <rich:dataTable binding="#{entityBackBean.dataTable}"
+                                            border="1"/>                              
+                        </rich:panel>
+                    </h:form>
+                </rich:panel>
+                <rich:spacer height="30" />
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

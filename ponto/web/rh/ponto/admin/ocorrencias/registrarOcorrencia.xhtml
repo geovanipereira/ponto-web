@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:der="http://components.custom/der">
+    <body>
+        <ui:composition template="#{SessionBean.templateViewId}">
+            <ui:define name="central">
+                <rich:panel id="ocorrencia">
+                    <f:facet name="header">Registro de Ocorrências</f:facet>
+                    <h:form>
+                        <rich:panel id="periodo">
+                            <f:facet name="header">Registrar Ocorrências no Período</f:facet>
+                            <h:outputLabel for="periodoInicialInput"
+                                           value="Período:" />
+                            <der:inputDate id="periodoInicialInput"
+                                           value="#{registroOcorrenciaBackBean.periodoInicial}"
+                                           required="true"/>
+
+                            <h:outputLabel for="periodoFinalInput"
+                                           value="a" />
+                            <der:inputDate id="periodoFinalInput"
+                                           value="#{registroOcorrenciaBackBean.periodoFinal}"
+                                           required="true"/>
+                            <br />
+                        </rich:panel>
+                        <br />
+                        <br />
+                        <a4j:region immediate="true"
+                                    renderRegionOnly="true">
+                            <h:panelGrid columns="2"
+                                         align="left">
+                                <h:outputLabel for="servidorInput"
+                                               value="Servidor:" />
+                                <h:inputText id="servidorInput"
+                                             value="#{registroOcorrenciaBackBean.ocorrenciaForm.funcionario.nomeCompleto}"
+                                             size="40"
+                                             onkeyup="this.value = this.value.toUpperCase()">
+                                    <rich:suggestionbox ajaxSingle="true"
+                                                        height="200"
+                                                        width="260"
+                                                        for="servidorInput"
+                                                        var="servidor"
+                                                        suggestionAction="#{registroOcorrenciaBackBean.autoCompleteServidor}"
+                                                        fetchValue="#{servidor.nomeCompleto}"
+                                                        frequency="1"
+                                                        selfRendered="true"
+                                                        nothingLabel="Registro Não Encontrado"
+                                                        id="suggestion">
+                                        <h:column>
+                                            <h:outputText value="#{servidor.matriculaCompleta}" />
+                                        </h:column>
+                                        <h:column>
+                                            <h:outputText value="#{servidor.nomeCompleto}"/>
+                                        </h:column>
+                                        <a4j:support event="onselect"
+                                                     reRender="matriculaInput,gradeHoraria">
+                                            <f:setPropertyActionListener value="#{servidor.matriculaCompleta}"
+                                                                         target="#{registroOcorrenciaBackBean.matriculaCompleta}" />
+                                            <f:setPropertyActionListener value="#{servidor.gradeHorario.descricao}"
+                                                                         target="#{registroOcorrenciaBackBean.descricaoGrade}" />
+                                        </a4j:support>
+                                    </rich:suggestionbox>
+                                </h:inputText>
+                                <h:outputLabel for="matriculaInput"
+                                               value="Matrícula:" />
+                                <h:inputText id="matriculaInput"
+                                             value="#{registroOcorrenciaBackBean.matriculaCompleta}" />
+                            </h:panelGrid>
+                            <h:outputText id="gradeHoraria"
+                                          value="Grade Horária: #{registroOcorrenciaBackBean.descricaoGrade}"/>
+                        </a4j:region>
+                        <br />
+                        <br />
+                        <h:panelGrid columns="2"
+                                     align="left">
+                            <h:outputLabel for="motivoInput"
+                                           value="Motivo:" />
+                            <h:selectOneMenu id="motivoInput"
+                                             required=""
+                                             value="#{registroOcorrenciaBackBean.ocorrenciaForm.motivo}">
+                                <f:selectItems value="#{registroOcorrenciaBackBean.listaMotivos}" />
+                            </h:selectOneMenu>
+
+                            <h:outputLabel for="descricaoInput"
+                                           value="Descrição:" />
+                            <h:inputText id="descricaoInput"
+                                         value="#{registroOcorrenciaBackBean.ocorrenciaForm.descricao}"
+                                         size="70" />
+
+                            <h:outputLabel for="saidaInput"
+                                           value="Entrada:" />
+                            <der:inputTime id="saidaInput"
+                                           value="#{registroOcorrenciaBackBean.ocorrenciaForm.saida}"/>
+
+                            <h:outputLabel for="retornoInput"
+                                           value="Saída:" />
+                            <der:inputTime id="retornoInput"
+                                           value="#{registroOcorrenciaBackBean.ocorrenciaForm.retorno}"/>
+
+                            <h:outputText value="Exceto p/ os Dias"/>
+                            <h:selectManyCheckbox id="diasSemanas"
+                                                  value="#{registroOcorrenciaBackBean.diaSemanas}"
+                                                  border="0"
+                                                  disabled="false"
+                                                  title="Dias da Semana"
+                                                  layout="lineDirection">
+                                <f:selectItem id="domingo" itemLabel="Domingo" itemValue="0" />
+                                <f:selectItem id="segunda" itemLabel="Segunda" itemValue="1" />
+                                <f:selectItem id="terca" itemLabel="Terça" itemValue="2" />
+                                <f:selectItem id="quarta" itemLabel="Quarta" itemValue="3" />
+                                <f:selectItem id="quinta" itemLabel="Quinta" itemValue="4" />
+                                <f:selectItem id="sexta" itemLabel="Sexta" itemValue="5" />
+                                <f:selectItem id="sabado" itemLabel="Sábado" itemValue="6" />
+                            </h:selectManyCheckbox>
+                        </h:panelGrid>
+                        <br />
+                        <h:commandButton id="gravaOcorrencia"
+                                         action="#{registroOcorrenciaBackBean.actionGravaOcorrencia}"
+                                         value="Gravar" />
+                    </h:form>
+                </rich:panel>
+                <rich:spacer height="30" />
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

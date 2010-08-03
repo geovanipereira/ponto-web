@@ -1,0 +1,327 @@
+* html #layout {
+    padding:0px;
+    margin:0px;
+    font-family:Arial, Helvetica, sans-serif;
+    height: 100%;
+}
+
+html, body {
+    height: 100%;
+    margin:0px;
+}
+
+#layout {
+    width:995px;
+    margin:auto;
+    min-height: 100%;
+    position: relative;
+}
+
+#topo {
+    width:995px;
+    no-repeat: right 34px;
+}
+
+#topo h2 { 
+    float:right;
+    margin-top:-49px;
+    margin-right:10px;
+    font-size:15px;
+    letter-spacing:4px;
+}
+
+#barra {
+    color:#fff;
+    background:url(./images/back_top01.jpg) repeat-x ;
+    height:46px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:13px;
+    position:relative;
+    top:0px;
+    padding-bottom:4px;
+}
+
+#esquerda {
+    background:url(./images/_back_left_top.jpg) bottom left no-repeat;
+    z-index:1000px;
+    width:7px;
+    height:46px;
+    position:relative;
+    float:left;
+    top:0px;
+}
+
+#logo {
+    background:transparent url(./images/logo.png) no-repeat scroll 0%;
+    position:relative;
+    float:left;
+    width:141px;
+    height:46px;
+    top:0px;
+}
+
+#titulo {
+    padding: 15px;
+    float:left;
+    position:relative;
+    height:0px;
+    width:670px;
+    text-align:center;
+    z-index:100;
+    top:0px;
+    font-weight: bold;
+}
+
+#brasao_governo {
+    background:transparent url(./images/brasao_govCe.jpg) no-repeat scroll 0%;
+    width:146px;
+    float:right;
+    height:46px;
+    position:relative;
+    top:0px;
+}
+
+#menu{
+    position:relative;
+    height:23px;
+    padding-bottom:4px;
+    z-index:100;
+}
+
+#mensagens {
+    position:relative;
+    text-align:center;
+    color:White;
+    font-weight:bold;
+}
+
+.mensagem {    
+    _border:2px none;
+    line-height:1.25em;
+    margin:0px;
+    font-size:90%;
+    padding:2px;
+}
+
+.texto {
+    background-color:#FFFFE3;
+    border:1px solid #999966;
+    float:left;
+    width:88%;
+    height:20px;
+    border:1px solid #999966;
+    color:black;
+    font-weight:normal;
+    text-align:left;
+}
+
+.error{    
+    background-color:#DD0000;
+    border:1px solid #DD0000;
+    width:10%;
+    height:20px;
+    float:left;
+}
+
+.required{
+    color:red;
+}
+
+.fatal {
+    background-color:#DD0000;
+    border:1px solid #DD0000;
+    width:10%;
+    height:20px;
+    float:left;
+}
+
+.info {
+    background-color:#999966;
+    border:1px solid #999966;
+    width:10%;
+    height:20px;
+    float:left;
+}
+
+.warn {
+    background-color:#999966;
+    border:1px solid #999966;
+    width:10%;
+    height:20px;
+    float:left;
+}
+
+#central{
+    clear:both;
+    padding:4px 0px 40px 0px;
+}
+
+#rodape   {
+    width:995px;
+    text-align:center;
+    font-size:11px;
+    background:url(./images/back_rodape.png) repeat-x;
+    height:25px;
+    padding-top:15px;
+    position: absolute;
+    bottom: 0;
+}
+
+.login3 {
+    padding-top: 100px;
+    padding-left: 100px;
+}
+
+.login3 h3 {
+    color: #666666;
+    font-size:18px;
+}
+
+.senha {
+    padding-right: 7px;
+}
+
+.esquerda {
+    background:url(./images/_back_left_top.jpg);
+    position:relative;
+    z-index:1000px;
+    width:150px;
+    border:10px;
+    border: 1px solid red;
+}
+
+.loginInput {
+    background:#FFFFFF none repeat scroll 0%;
+    border:medium none;
+    color:#949494;
+    font-family:arial;
+    font-size:11px;
+    margin: 4px 4px 0px 0px;
+    padding:4px;
+}
+
+.loginBotao {
+    background:#CCCCCC;
+    color:#333333;
+    border:medium none;
+    font-family:arial;
+    font-size:11px;
+    margin: 4px 4px 0px 0px;
+    padding:4px;
+}
+
+#login2 {
+    background:#E4E4E4;
+    height:320px;
+}
+
+#login1 {
+    font-family:Arial, Helvetica, sans-serif;
+    color:#666666;
+    font-size:11px;
+    border: 2px solid #E4E4E4;
+    width: 320px;
+    height: 320px;
+    position: relative;
+    left:655px;
+    padding:8px;
+    margin:20px 0px 20px 0;
+}
+
+/* Forms --------------------------------------------------------------------------------------- */
+
+form input {
+    margin: 1px;
+    padding: 1px;
+}
+
+input[disabled], select[disabled], checkbox[disabled],
+input[readonly], select[readonly], checkbox[readonly]
+{
+    border-style : none;
+    cursor: default;
+}
+
+form .message {
+    color: red;
+}
+
+label {
+    font-weight:bold;
+}
+
+/* Tables -------------------------------------------------------------------------------------- */
+
+tr.oddRow {
+    background-color: #fafafa;
+}
+
+tr.evenRow {
+    background-color: #eaeaea;
+}
+
+.top {
+    vertical-align: top;
+}
+
+td {
+    vertical-align:top;
+}
+
+/* PanelGrid ------------------------------------------------------------------------------------ */
+.headerPanelGrid {
+    background-color:#ffffff;
+    text-align:left;
+}
+
+.evenLinha {
+    background-color:#F5F5F5;
+    vertical-align: top;
+}
+
+.oddLinha {
+    background-color: #ffffff;
+    vertical-align: top;
+}
+
+.col1 {
+    width: 20%;
+}
+
+.col2 {
+    width: 80%;
+}
+
+.progress {
+    border: 1px solid #D7D7D7;
+    border-collapse: collapse;
+    border-spacing: 0pt;
+    empty-cells: show;
+    text-align: center;
+    float:left;
+    margin: 1px 6px 1px 0px;
+}
+.closed { background: #BAE0BA none repeat scroll 0%; height:5px; }
+.todo { background: #CCCCCC none repeat scroll 0%; height:5px; }
+
+.colAlignLeft {  text-align: left;  }
+.colAlignRight {  text-align: right;  }
+
+.span_importaOcorrencia {
+    background:white;
+    border: 1px solid black;
+    font-size:10px;
+    display: inline-block;
+    position: relative;
+    clear: both;
+}
+
+.listaLotacao{
+    width: 500px;
+    height : 160px;
+    overflow : auto;
+    margin: 5px 5px 5px 5px;
+    padding: 5px 5px 5px 5px;
+    background-color: #ffffff;
+    position: relative;
+}

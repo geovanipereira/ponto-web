@@ -1,0 +1,218 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich">
+    <body>
+        <h:form id="formMenuPrincipal">
+            <rich:toolBar id="toolBarPrincipal">
+                <!-- Menu RH -->
+                <rich:dropDownMenu id="mnRH"
+                                   rendered="#{loginFuncionarioBean.funcionario and identity.loggedIn}">
+                    <f:facet name="label">
+                        <h:outputText value="Ponto"/>
+                    </f:facet>
+
+                    
+                        <rich:menuItem id="miPontoFuncFrequencia"
+                                       submitMode="ajax"
+                                       value="Minhas Frequências"
+                                       action="frequencia" />
+
+                        <rich:menuItem id="miPontoFuncionarioOcorrencia"
+                                       submitMode="ajax"
+                                       value="Minhas Ocorrências"
+                                       action="funcionarioOcorrencia" />
+
+                        <rich:menuItem id="miPontoRegistrarFuncionarioOcorrencia"
+                                       submitMode="ajax"
+                                       value="Registrar Ocorrência"
+                                       action="registrarFuncionarioOcorrencia" />
+
+                        <rich:menuItem id="miAutorizarOcorrencia"
+                                       submitMode="ajax"
+                                       value="Autorizar Ocorrências"
+                                       action="autorizarOcorrencia" />
+
+                        <rich:menuItem id="miPontoRelatorioFrequencia"
+                                       submitMode="ajax"
+                                       value="Relatório de Frequências"
+                                       action="relatorioFrequencia"
+                                       rendered="#{s:hasRole('RH.VER_FREQUENCIAS_SETOR')}"/>
+                    
+                </rich:dropDownMenu>
+
+                <rich:dropDownMenu id="mnRHAdmin"
+                                   rendered="#{identity.loggedIn and s:hasRole('RH')}">
+                    <f:facet name="label">
+                        <h:outputText value="Administração"/>
+                    </f:facet>
+                    <!-- Menu RH/Ponto -->
+                    <rich:menuGroup value="Importações">
+                        <rich:menuItem id="miImportaDadosRelogio"
+                                       submitMode="ajax"
+                                       value="Importar Batidas"
+                                       action="importarDadosRelogio" />
+
+                        <rich:menuItem id="miImportarOcorrencia"
+                                       submitMode="ajax"
+                                       value="Importar Ocorrências SRH"
+                                       action="importarOcorrencia" />
+
+                        <rich:menuItem id="miImportarfuncionarios"
+                                       submitMode="ajax"
+                                       value="Importar Funcionários SRH"
+                                       />
+                    </rich:menuGroup>
+
+                    <rich:menuGroup value="Ocorrências">
+                        <rich:menuItem id="miValidarOcorrencia"
+                                       submitMode="ajax"
+                                       value="Validar"
+                                       action="validarOcorrencia" />
+
+                        <rich:menuItem id="miRegistrarOcorrencia"
+                                       submitMode="ajax"
+                                       value="Registrar"
+                                       action="registrarOcorrencia" />
+
+                        <rich:menuItem id="miConsultarOcorrencia"
+                                       submitMode="ajax"
+                                       value="Consultar"
+                                       action="consultarOcorrencia" />
+
+                        <rich:menuItem id="miExcluirOcorrencia"
+                                       submitMode="ajax"
+                                       value="Excluir"
+                                       action="excluirOcorrencia" />
+
+                        <rich:menuItem id="miRegistrarOcorrenciaPorLotacao"
+                                       submitMode="ajax"
+                                       value="Registrar Ocorrência por Lotação"
+                                       action="registrarOcorrenciaPorLotacao" />
+                    </rich:menuGroup>
+
+                    <rich:menuItem id="miEncerrarMes"
+                                   submitMode="ajax"
+                                   value="Encerrar Mês"
+                                   action="encerrarMes" />
+
+                    <rich:menuGroup value="Cadastros">
+                        <rich:menuItem id="miFeriados"
+                                       submitMode="ajax"
+                                       value="Feriados"
+                                       action="feriados" />
+
+                        <rich:menuItem id="miGrades"
+                                       submitMode="ajax"
+                                       value="Grades"
+                                       action="grades" />
+
+                        <rich:menuItem id="miGradesHoarios"
+                                       submitMode="ajax"
+                                       value="Grades Horarios"
+                                       action="gradesHorarios" />
+
+                        <rich:menuItem id="miFunc"
+                                       submitMode="ajax"
+                                       value="Funcionários"
+                                       action="funcionarios" />
+
+                        <rich:menuItem id="miHorariosEspeciais"
+                                       submitMode="ajax"
+                                       value="Horários Especiais"
+                                       action="horariosEspeciais" />
+
+                        <rich:menuItem id="miEscalas"
+                                       submitMode="ajax"
+                                       value="Escalas"
+                                       action="escalas" />
+
+                        <rich:menuItem id="miOrgaos"
+                                       submitMode="ajax"
+                                       value="Órgãos"
+                                       action="orgaos" />
+
+                        <rich:menuItem id="miLotacoes"
+                                       submitMode="ajax"
+                                       value="Lotações"
+                                       action="lotacoes" />
+                    </rich:menuGroup>
+
+                    <rich:menuGroup value="Relatórios">
+                        <rich:menuItem id="miRelatorioFrequencia"
+                                       submitMode="ajax"
+                                       value="Frequências"
+                                       action="relatorioFrequencia" />
+
+                        <rich:menuItem id="miRelatorioFuncionario"
+                                       submitMode="ajax"
+                                       value="Funcionários"
+                                       action="relatorioFuncionario" />
+
+                        <rich:menuItem id="miRelatorioAdicionalNoturno"
+                                       submitMode="ajax"
+                                       value="Adicional Noturno"
+                                       action="relatorioAdicionalNoturno" />
+                    </rich:menuGroup>
+                </rich:dropDownMenu>
+
+                <rich:dropDownMenu rendered="#{identity.loggedIn}">
+                    <f:facet name="label">
+                        <h:outputText value="Painel de Controle"/>
+                    </f:facet>
+
+                    <rich:menuItem id="miSkin" value="Tema : " >
+                        <h:selectOneMenu id="skin"
+                                         value="#{SessionBean.skin}"
+                                         onchange="this.form.submit()">
+                            <f:selectItems value="#{SessionBean.skinsList}"/>
+                        </h:selectOneMenu>
+                    </rich:menuItem>
+
+                    <rich:menuItem id="miLanguage" value="Idioma : " >
+                        <h:selectOneMenu value="#{SessionBean.locale}"
+                                         valueChangeListener="#{SessionBean.changeLocale}"
+                                         onchange="this.form.submit()">
+                            <f:selectItems value="#{SessionBean.localeList}" />
+                        </h:selectOneMenu>
+                    </rich:menuItem>
+
+                    <rich:menuItem id="miRoles"
+                                   value="Roles"
+                                   action="admRoles"
+                                   rendered="#{s:hasRole('ADMIN')}"/>
+                    <rich:menuItem id="miUsers"
+                                   value="Users"
+                                   action="admUsers"
+                                   rendered="#{s:hasRole('ADMIN')}"/>
+                    <rich:menuItem id="miConsultarAuditoria"
+                                   value="Consulta Auditoria"
+                                   action="consultarAuditoria"
+                                   rendered="#{s:hasRole('ADMIN')}"/>
+                    <rich:menuItem id="miConsultarLogAcesso"
+                                   value="Log de Acesso"
+                                   action="consultarLogAcesso"
+                                   rendered="#{s:hasRole('ADMIN')}"/>
+                </rich:dropDownMenu>
+
+                <h:outputText value="#{SessionBean.login.name}"
+                              rendered="#{identity.loggedIn}"/>
+
+                <s:link id="logout"
+                        view="/public/home.xhtml"
+                        value="#{i18n['page.login.logout']}"
+                        action="#{identity.logout}"
+                        rendered="#{identity.loggedIn}"/>
+
+                <s:link id="help"
+                        view="/public/help.xhtml"
+                        value="#{i18n['page.help.help']}"
+                        action="help"
+                        rendered="#{identity.loggedIn}"/>
+            </rich:toolBar>
+        </h:form>
+    </body>
+</html>

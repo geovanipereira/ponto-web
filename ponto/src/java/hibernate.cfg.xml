@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <!--<property name="connection.datasource">java:/comp/env/jdbc/postgres-ds</property>-->
+        <!--
+        No TOMCAT :
+        1)Copiar postgresql-8.3-603.jdbc3.jar para pasta lib
+
+        2)No context.xml
+          <Resource name="jdbc/postgres-ds"
+                    auth="Container"
+                    scope="Shareable"
+                    type="javax.sql.DataSource"
+                    username="postgres"
+                    password="postgres"
+                    driverClassName="org.postgresql.Driver"
+                    url="jdbc:postgresql://localhost:5432/postgres"
+                    maxActive="100"
+                    maxIdle="30"
+                    maxWait="10000"/>
+
+        3)No web.xml do tomcat
+          <resource-ref>
+             <res-ref-name>jdbc/postgres-ds</res-ref-name>
+             <res-type>javax.sql.DataSource</res-type>
+             <res-auth>Container</res-auth>
+           </resource-ref>
+
+        4)Retirar do hibernate.cfg.xml-->
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">postgres</property>
+        <!--<property name="hibernate.hbm2ddl.auto">validate</property>-->
+        <property name="hibernate.connection.pool_size">1</property>
+
+        <property name="show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+
+        <!-- Enable Hibernate's automatic session context management -->
+        <property name="hibernate.current_session_context_class">thread</property>
+        <!-- Disable the second-level cache  -->
+        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+                
+        <!-- Ponto -->
+        <mapping class="der.ponto.Batida"/>
+        <mapping class="der.ponto.Escala"/>
+        <mapping class="der.ponto.Feriado"/>
+        <mapping class="der.ponto.Frequencia"/>
+        <mapping class="der.ponto.Funcionario"/>
+        <mapping class="der.ponto.Grade"/>
+        <mapping class="der.ponto.GradeHorario"/>
+        <mapping class="der.ponto.Historico"/>
+        <mapping class="der.ponto.HorarioEspecial"/>
+        <mapping class="der.ponto.Lotacao"/>
+        <mapping class="der.ponto.MesProcessado"/>
+        <mapping class="der.ponto.Ocorrencia"/>
+        <mapping class="der.ponto.StatusOcorrencia"/>
+        <mapping class="der.ponto.StatusAguardandoAutorizacao"/>
+        <mapping class="der.ponto.StatusAguardandoValidacao"/>
+        <mapping class="der.ponto.StatusCancelado"/>
+        <mapping class="der.ponto.StatusValidado"/>
+        <mapping class="der.ponto.Orgao"/>
+
+        <event type="save-update">
+            <listener class="der.auditoria.backBeans.AuditoriaListener"/>
+            <listener class="org.hibernate.event.def.DefaultSaveOrUpdateEventListener" />
+        </event>
+
+        <event type="delete">
+            <listener class="der.ponto.OcorrenciaListener"/>
+            <listener class="der.auditoria.backBeans.AuditoriaListener"/>
+            <listener class="org.hibernate.event.def.DefaultDeleteEventListener"/>
+        </event>
+    </session-factory>
+</hibernate-configuration>

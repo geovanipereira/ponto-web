@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="1.2" 
+              xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+
+    <application>
+        <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+        <message-bundle>Messages</message-bundle>
+        <resource-bundle>
+            <base-name>I18N</base-name>
+            <var>i18n</var>
+        </resource-bundle>
+        <locale-config>
+            <default-locale>pt_BR</default-locale>
+            <supported-locale>en</supported-locale>
+        </locale-config>
+    </application>
+
+    <lifecycle>
+        <!-- configuracao do JBoss Seam JSF Components -->
+        <!--<phase-listener>org.jboss.seam.jsf.SeamPhaseListener</phase-listener>-->
+    </lifecycle>
+
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>home</from-outcome>
+            <to-view-id>/public/home.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/public/login.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>logout</from-outcome>
+            <to-view-id>/public/login.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>sessionExpired</from-outcome>
+            <to-view-id>/public/login.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>help</from-outcome>
+            <to-view-id>/public/help.jsf</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <!-- Banck Beans -->
+    <managed-bean>
+        <managed-bean-name>SessionBean</managed-bean-name>
+        <managed-bean-class>faces.backBeans.SessionBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>editorBean</managed-bean-name>
+        <managed-bean-class>faces.backBeans.editor.EditorBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>fileUploadBean</managed-bean-name>
+        <managed-bean-class>faces.backBeans.fileUpload.FileUploadBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+</faces-config>

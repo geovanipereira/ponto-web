@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:der="http://components.custom/der"
+      xmlns:rich="http://richfaces.org/rich">
+    <body>
+        <ui:composition template="#{SessionBean.templateViewId}">
+            <ui:define name="central" >
+                <h:panelGrid columns="1" rendered="#{not identity.loggedIn}">
+                    <h:panelGroup>
+                        <div id="login1">
+                            <div id = "login2">
+                                <div class="login3">
+                                    <h3><h:outputText value="#{i18n['page.login.title']}"/></h3>
+                                    <h:form id="formLogin">
+                                        <h:panelGrid columns="2">
+                                            <h:outputLabel value="#{i18n['page.login.username']}"
+                                                           for="username" />
+                                            <h:inputText id="username"
+                                                 value="#{identity.username}"
+                                                 required="true"
+                                                 requiredMessage="#{i18n['page.login.userRequired']}"
+                                                 styleClass="loginInput"/>
+
+                                            <h:outputLabel value="#{i18n['page.login.password']}"
+                                                          for="password"/>
+                                            <h:inputSecret id="password"
+                                                   value="#{identity.password}"
+                                                   required="true"
+                                                   requiredMessage="#{i18n['page.login.passRequired']}"
+                                                   styleClass="loginInput"/>
+
+                                            <h:commandButton id="login"
+                                                             action="#{identity.login}"
+                                                             value="#{i18n['page.login.login']}"
+                                                             styleClass="loginBotao"/>
+                                        </h:panelGrid>
+                                    </h:form>
+                                    <h:form>
+                                        <h:commandLink value="#{i18n['page.help.helpQuestion']}" action="help"/>
+                                    </h:form>
+                                </div>
+                            </div>
+                        </div>
+                    </h:panelGroup>
+                </h:panelGrid>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
+
