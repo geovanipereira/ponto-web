@@ -3,7 +3,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-        <!--<property name="connection.datasource">java:/comp/env/jdbc/postgres-ds</property>-->
+        <property name="connection.datasource">java:/comp/env/jdbc/postgres-ds</property>
         <!--
         No TOMCAT :
         1)Copiar postgresql-8.3-603.jdbc3.jar para pasta lib
@@ -28,17 +28,16 @@
              <res-auth>Container</res-auth>
            </resource-ref>
 
-        4)Retirar do hibernate.cfg.xml-->
+        4)Retirar do hibernate.cfg.xml
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
         <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres</property>
         <property name="hibernate.connection.username">postgres</property>
-        <property name="hibernate.connection.password">postgres</property>
-        <!--<property name="hibernate.hbm2ddl.auto">validate</property>-->
+        <property name="hibernate.connection.password">postgres</property>        
         <property name="hibernate.connection.pool_size">1</property>
 
         <property name="show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
-
+-->
         <!-- Enable Hibernate's automatic session context management -->
         <property name="hibernate.current_session_context_class">thread</property>
         <!-- Disable the second-level cache  -->

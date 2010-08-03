@@ -15,33 +15,33 @@
                         <h:outputText value="Ponto"/>
                     </f:facet>
 
-                    
-                        <rich:menuItem id="miPontoFuncFrequencia"
-                                       submitMode="ajax"
-                                       value="Minhas Frequências"
-                                       action="frequencia" />
 
-                        <rich:menuItem id="miPontoFuncionarioOcorrencia"
-                                       submitMode="ajax"
-                                       value="Minhas Ocorrências"
-                                       action="funcionarioOcorrencia" />
+                    <rich:menuItem id="miPontoFuncFrequencia"
+                                   submitMode="ajax"
+                                   value="Minhas Frequências"
+                                   action="frequencia" />
 
-                        <rich:menuItem id="miPontoRegistrarFuncionarioOcorrencia"
-                                       submitMode="ajax"
-                                       value="Registrar Ocorrência"
-                                       action="registrarFuncionarioOcorrencia" />
+                    <rich:menuItem id="miPontoFuncionarioOcorrencia"
+                                   submitMode="ajax"
+                                   value="Minhas Ocorrências"
+                                   action="funcionarioOcorrencia" />
 
-                        <rich:menuItem id="miAutorizarOcorrencia"
-                                       submitMode="ajax"
-                                       value="Autorizar Ocorrências"
-                                       action="autorizarOcorrencia" />
+                    <rich:menuItem id="miPontoRegistrarFuncionarioOcorrencia"
+                                   submitMode="ajax"
+                                   value="Registrar Ocorrência"
+                                   action="registrarFuncionarioOcorrencia" />
 
-                        <rich:menuItem id="miPontoRelatorioFrequencia"
-                                       submitMode="ajax"
-                                       value="Relatório de Frequências"
-                                       action="relatorioFrequencia"
-                                       rendered="#{s:hasRole('RH.VER_FREQUENCIAS_SETOR')}"/>
-                    
+                    <rich:menuItem id="miAutorizarOcorrencia"
+                                   submitMode="ajax"
+                                   value="Autorizar Ocorrências"
+                                   action="autorizarOcorrencia" />
+
+                    <rich:menuItem id="miPontoRelatorioFrequencia"
+                                   submitMode="ajax"
+                                   value="Relatório de Frequências"
+                                   action="relatorioFrequencia"
+                                   rendered="#{s:hasRole('RH.VER_FREQUENCIAS_SETOR')}"/>
+
                 </rich:dropDownMenu>
 
                 <rich:dropDownMenu id="mnRHAdmin"
@@ -49,23 +49,12 @@
                     <f:facet name="label">
                         <h:outputText value="Administração"/>
                     </f:facet>
+
                     <!-- Menu RH/Ponto -->
-                    <rich:menuGroup value="Importações">
-                        <rich:menuItem id="miImportaDadosRelogio"
-                                       submitMode="ajax"
-                                       value="Importar Batidas"
-                                       action="importarDadosRelogio" />
-
-                        <rich:menuItem id="miImportarOcorrencia"
-                                       submitMode="ajax"
-                                       value="Importar Ocorrências SRH"
-                                       action="importarOcorrencia" />
-
-                        <rich:menuItem id="miImportarfuncionarios"
-                                       submitMode="ajax"
-                                       value="Importar Funcionários SRH"
-                                       />
-                    </rich:menuGroup>
+                    <rich:menuItem id="miImportaDadosRelogio"
+                                   submitMode="ajax"
+                                   value="Importar Batidas"
+                                   action="importarDadosRelogio" />
 
                     <rich:menuGroup value="Ocorrências">
                         <rich:menuItem id="miValidarOcorrencia"

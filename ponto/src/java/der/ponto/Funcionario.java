@@ -40,7 +40,7 @@ public class Funcionario implements Serializable {
     @Length(max = 14)
     @Basic(optional = false)
     @Column(name = "MAT_FUNC", nullable = false, length = 14)
-    @Pattern(regex = "[0-9]{13}[0-9,A-Z]{1}", message = "Matrícula inválida")
+    //@Pattern(regex = "[0-9]{13}[0-9,A-Z]{1}", message = "Matrícula inválida")
     @PropertyDescriptor(index = 1, displayName = "Matrícula Completa", summary = true)
     private String matriculaCompleta;
     
@@ -73,7 +73,7 @@ public class Funcionario implements Serializable {
     @NotNull
     @Column(name = "LOG_REGISTRO", length = 5)
     @PropertyDescriptor(index = 9, displayName = "Bate Ponto?")
-    private Short batePonto;
+    private Short batePonto = 0;
 
     @NotNull
     @Temporal(TemporalType.DATE)
