@@ -189,8 +189,8 @@ public class RelatorioAdicionalNoturnoBackBean extends BackBeanViewPage {
         LoginBean login = (LoginBean) SessionBean.getSessionMapValue("login");
 
         HashMap<String, Object> map = new HashMap<String, Object>();
-        map.put("LOGO1", getDiretorioReal("/relatorios/logo1.jpg"));
-        map.put("LOGO2", getDiretorioReal("/relatorios/logo2.jpg"));
+        map.put("LOGO1", getDiretorioReal("/templates/images/logo1.jpg"));
+        map.put("LOGO2", getDiretorioReal("/templates/images/logo2.jpg"));
         map.put("REPORT_LOCALE", new Locale("pt", "br"));
         map.put("USUARIO_EMISSAO", login.getName());
         map.put("DATA_INICIAL", dataInicial);
