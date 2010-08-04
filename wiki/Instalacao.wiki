@@ -1,8 +1,4 @@
 <code>
-================
-== INSTALACAO ==
-================
-
 1)Parar o tomcat.
 
 
