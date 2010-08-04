@@ -2,46 +2,41 @@
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
-        <Node id="rh/ponto/admin/ocorrencias/validarOcorrencia.xhtml" x="1650" y="900" zoom="true"/>
-        <Node id="templates/template.xhtml" x="2900" y="150" zoom="true"/>
-        <Node id="public/home.xhtml" x="900" y="1650" zoom="true"/>
-        <Node id="public/loginDiferente.xhtml" x="1650" y="1950" zoom="true"/>
-        <Node id="rh/ponto/admin/relatorios/relatorioAdicionalNoturno.xhtml" x="2400" y="300" zoom="true"/>
-        <Node id="public/error.xhtml" x="400" y="450" zoom="true"/>
-        <Node id="rh/ponto/admin/cadastros/horariosEspeciais.xhtml" x="3150" y="900" zoom="true"/>
         <Node id="rh/ponto/admin/cadastros/gradesHorarios.xhtml" x="150" y="1650" zoom="true"/>
-        <Node id="admin/users.xhtml" x="2150" y="600" zoom="true"/>
-        <Node id="auditoria/consultarAuditoria.jsf" x="2150" y="1650" zoom="true"/>
-        <Node id="rh/ponto/admin/ocorrencias/registrarOcorrencia.xhtml" x="1900" y="600" zoom="true"/>
-        <Node id="rh/ponto/admin/cadastros/feriados.xhtml" x="3650" y="600" zoom="true"/>
-        <Node id="rh/ponto/registrarFuncionarioOcorrencia.xhtml" x="2400" y="1050" zoom="true"/>
-        <Node id="rh/ponto/admin/importacoes/importarOcorrencia.xhtml" x="650" y="150" zoom="true"/>
-        <Node id="rh/ponto/admin/ocorrencias/consultarOcorrencia.xhtml" x="1650" y="750" zoom="true"/>
-        <Node id="public/testeLogin.html" x="400" y="150" zoom="true"/>
-        <Node id="auditoria/consultarAuditoria.xhtml" x="2400" y="1200" zoom="true"/>
-        <Node id="rh/ponto/admin/importacoes/importarDadosRelogio_old.xhtml" x="900" y="300" zoom="true"/>
-        <Node id="rh/ponto/autorizarOcorrencia.xhtml" x="3400" y="150" zoom="true"/>
-        <Node id="rh/ponto/admin/cadastros/orgaos.xhtml" x="3650" y="300" zoom="true"/>
-        <Node id="rh/ponto/admin/cadastros/lotacoes.xhtml" x="900" y="2100" zoom="true"/>
-        <Node id="public/frequenciaRelatorioPonto.xhtml" x="2150" y="450" zoom="true"/>
         <Node id="public/help.xhtml" x="150" y="600" zoom="true"/>
         <Node id="rh/ponto/admin/importacoes/importarDadosRelogio.xhtml" x="650" y="1950" zoom="true"/>
+        <Node id="admin/users.xhtml" x="2150" y="600" zoom="true"/>
         <Node id="public/login.xhtml" x="2900" y="1200" zoom="true"/>
+        <Node id="auditoria/consultarAuditoria.jsf" x="2150" y="1650" zoom="true"/>
+        <Node id="rh/ponto/admin/ocorrencias/registrarOcorrencia.xhtml" x="1900" y="600" zoom="true"/>
+        <Node id="rh/ponto/admin/relatorios/relatorioFuncionario.xhtml" x="400" y="1500" zoom="true"/>
         <Node id="rh/ponto/admin/cadastros/escalas.xhtml" x="3150" y="150" zoom="true"/>
+        <Node id="rh/ponto/admin/cadastros/feriados.xhtml" x="3650" y="600" zoom="true"/>
+        <Node id="rh/ponto/registrarFuncionarioOcorrencia.xhtml" x="2400" y="1050" zoom="true"/>
+        <Node id="rh/ponto/admin/ocorrencias/excluirOcorrencia.xhtml" x="1150" y="2250" zoom="true"/>
+        <Node id="rh/ponto/admin/ocorrencias/validarOcorrencia.xhtml" x="1650" y="900" zoom="true"/>
+        <Node id="rh/ponto/admin/ocorrencias/consultarOcorrencia.xhtml" x="1650" y="750" zoom="true"/>
         <Node id="rh/ponto/admin/cadastros/grades.xhtml" x="4150" y="450" zoom="true"/>
+        <Node id="auditoria/consultarAuditoria.xhtml" x="2400" y="1200" zoom="true"/>
         <Node id="rh/ponto/frequenciaRelatorio.xhtml" x="1650" y="1800" zoom="true"/>
+        <Node id="templates/template.xhtml" x="2900" y="150" zoom="true"/>
+        <Node id="auditoria/consultarLogAcesso.jsf" x="150" y="150" zoom="true"/>
         <Node id="rh/ponto/admin/encerrarMes.xhtml" x="1150" y="1950" zoom="true"/>
+        <Node id="rh/ponto/relatorioFrequencia.xhtml" x="150" y="1500" zoom="true"/>
         <Node id="auditoria/consultarLogAcesso.xhtml" x="400" y="2400" zoom="true"/>
-        <Node id="templates/templatePublic.xhtml" x="1650" y="300" zoom="true"/>
+        <Node id="public/home.xhtml" x="900" y="1650" zoom="true"/>
+        <Node id="rh/ponto/autorizarOcorrencia.xhtml" x="3400" y="150" zoom="true"/>
+        <Node id="forward.jsp" x="150" y="300" zoom="true"/>
         <Node id="templates/menu.xhtml" x="3900" y="150" zoom="true"/>
         <Node id="admin/roles.xhtml" x="400" y="900" zoom="true"/>
+        <Node id="rh/ponto/admin/relatorios/relatorioAdicionalNoturno.xhtml" x="2400" y="300" zoom="true"/>
+        <Node id="rh/ponto/admin/cadastros/funcionarios.xhtml" x="1650" y="600" zoom="true"/>
+        <Node id="public/error.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="rh/ponto/admin/cadastros/orgaos.xhtml" x="3650" y="300" zoom="true"/>
+        <Node id="rh/ponto/admin/cadastros/lotacoes.xhtml" x="900" y="2100" zoom="true"/>
         <Node id="rh/ponto/admin/ocorrencias/registrarOcorrenciaPorLotacao.xhtml" x="650" y="2100" zoom="true"/>
         <Node id="rh/ponto/funcionarioOcorrencia.xhtml" x="650" y="1500" zoom="true"/>
-        <Node id="rh/ponto/admin/relatorios/relatorioFuncionario.xhtml" x="400" y="1500" zoom="true"/>
-        <Node id="rh/ponto/admin/ocorrencias/excluirOcorrencia.xhtml" x="1150" y="2250" zoom="true"/>
-        <Node id="rh/ponto/relatorioFrequencia.xhtml" x="150" y="1500" zoom="true"/>
-        <Node id="forward.jsp" x="150" y="300" zoom="true"/>
-        <Node id="rh/ponto/admin/cadastros/funcionarios.xhtml" x="1650" y="600" zoom="true"/>
+        <Node id="rh/ponto/admin/cadastros/horariosEspeciais.xhtml" x="3150" y="900" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>

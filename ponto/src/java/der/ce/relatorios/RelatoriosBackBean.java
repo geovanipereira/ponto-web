@@ -54,7 +54,7 @@ public class RelatoriosBackBean {
         LoginBean login = (LoginBean) SessionBean.getSessionMapValue("login");
         // faz confiurações do relatório
         HashMap<String, Object> map = new HashMap<String, Object>();
-        map.put("LogoDER", getDiretorioReal("/relatorios/logo1.jpg"));
+        map.put("LogoDER", getDiretorioReal("/templates/images/logo1.jpg"));
         map.put("REPORT_LOCALE", new Locale("pt", "br"));
         map.put("USUARIO_EMISSAO", login.getName());
 
@@ -74,7 +74,7 @@ public class RelatoriosBackBean {
         // captura o login que está em seção
         LoginBean login = (LoginBean) SessionBean.getSessionMapValue("login");
 
-        map.put("LogoDER", getDiretorioReal("/relatorios/logo1.jpg"));
+        map.put("LogoDER", getDiretorioReal("/templates/images/logo1.jpg"));
         map.put("REPORT_LOCALE", new Locale("pt", "br"));
         map.put("USUARIO_EMISSAO", login.getName());
 
@@ -95,7 +95,7 @@ public class RelatoriosBackBean {
         LoginBean login = (LoginBean) SessionBean.getSessionMapValue("login");
         // faz confiurações do relatório
         HashMap<String, Object> map = new HashMap<String, Object>();
-        map.put("LogoDER", getDiretorioReal("/relatorios/logo1.jpg"));        
+        map.put("LogoDER", getDiretorioReal("/templates/images/logo1.jpg"));
         map.put("REPORT_LOCALE", new Locale("pt", "br"));
         map.put("USUARIO_EMISSAO", login.getName());
         map.put("TITULO", titulo);

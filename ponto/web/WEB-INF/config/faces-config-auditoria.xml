@@ -7,13 +7,13 @@
      <navigation-rule>
          <navigation-case>
             <from-outcome>consultarAuditoria</from-outcome>
-            <to-view-id>/auditoria/consultarAuditoria.jsf</to-view-id>
+            <to-view-id>/admin/auditoria/consultarAuditoria.jsf</to-view-id>
             <redirect/>
         </navigation-case>
 
         <navigation-case>
             <from-outcome>consultarLogAcesso</from-outcome>
-            <to-view-id>/auditoria/consultarLogAcesso.jsf</to-view-id>
+            <to-view-id>/admin/auditoria/consultarLogAcesso.jsf</to-view-id>
             <redirect/>
         </navigation-case>
      </navigation-rule>
