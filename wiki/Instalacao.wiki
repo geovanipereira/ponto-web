@@ -1,10 +1,10 @@
-==Configurando TOMCAT para ambiente de desenvolvimento==
+= Configurando TOMCAT =
 
-===1)Copiar o driver do postgresql para pasta lib:===
+==1)Copiar o driver do postgresql para pasta lib:==
    EX: postgresql-8.3-603.jdbc3.jar para o Postgres 8.3
 
 
-===2)Na pasta \conf adicionar no final do arquivo context.xml :===
+==2)Na pasta \conf adicionar no final do arquivo context.xml :==
 <code>
 <Resource name="jdbc/postgres-ds"
           maxIdle="30"
@@ -20,7 +20,7 @@
 />
 </code>
 
-===3)No final do arquivo web.xml adicionar :===
+==3)No final do arquivo web.xml adicionar :==
 <code>
      <resource-ref>
        <res-ref-name>jdbc/postgres-ds</res-ref-name>
@@ -29,6 +29,8 @@
      </resource-ref>
 </code>
 
-===4)Reiniciar o tomcat.===
+==4)Reiniciar o tomcat.==
 
-== Deploy ponto.war ==
+= Deploy ponto.war =
+==1)Download ponto.war==
+==2)Deploy ponto.war pelo gerenciador do tomcat
