@@ -47,7 +47,7 @@ public class FuncionarioReport implements Serializable {
     public FuncionarioReport() {
     }
 
-    public FuncionarioReport(String matriculaCompleta, String nomeCompleto, Short numeroFuncionario, Lotacao lotacao, Date dataInicio, Short batePonto) {
+    public FuncionarioReport(String matriculaCompleta, String nomeCompleto, Integer numeroFuncionario, Lotacao lotacao, Date dataInicio, Short batePonto) {
         this.id = Long.valueOf(++ID);
         this.descricaoLotacao = lotacao.getDescricao();
         this.nomeCompleto = nomeCompleto;

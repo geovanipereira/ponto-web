@@ -1,7 +1,15 @@
 package der.ponto;
 
+import entities.annotations.Param;
 import entities.annotations.PropertyDescriptor;
+import entities.annotations.View;
+import entities.annotations.Views;
+import entities.dao.DAOConstraintException;
+import entities.dao.DAOException;
+import entities.dao.DAOFactory;
+import entities.dao.DAOValidationException;
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -18,7 +26,6 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotNull;
-import org.hibernate.validator.Pattern;
 
 /**
  * Entidade Frequência representa um dia de batida do funcionário
@@ -30,12 +37,22 @@ import org.hibernate.validator.Pattern;
  */
 @Entity
 @Table(name = "FUNCIONARIOS", schema = "ponto")
-@NamedQueries({@NamedQuery(name = "Funcionario.Todos", query = "from der.ponto.Funcionario"),
-@NamedQuery(name="Funcionario.LikeMatricula",query="Select f.matricula, f.nomeCompleto from der.ponto.Funcionario f where f.matriculaCompleta like :matricula"),
-@NamedQuery(name="Funcionario.NomePorMatricula",query="Select f.matricula, f.nomeCompleto from der.ponto.Funcionario f where f.matricula = :matricula")})
+@NamedQueries({
+    @NamedQuery(name = "Funcionario.Todos", query = "from der.ponto.Funcionario"),
+    @NamedQuery(name = "Funcionario.porMatricula", query = "from der.ponto.Funcionario f where f.matricula = :matricula"),
+    @NamedQuery(name = "Funcionario.NomePorMatricula", query = "Select f.matricula, f.nomeCompleto from der.ponto.Funcionario f where f.matricula = :matricula")})
+@Views({
+    @View(name = "RegistrarBatida",
+    title = "Registrar Batida",
+    members = "[matricula;nomeCompleto;registrarBatida()]",
+    namedQuery = "Funcionario.porMatricula",
+    params =
+    @Param(name = "matricula", value = "#{SessionBean.login.username}"),
+    rows = 10)})
 public class Funcionario implements Serializable {
     //Matrícula completa do Funcionário
-    @Id    
+
+    @Id
     @NotNull
     @Length(max = 14)
     @Basic(optional = false)
@@ -43,63 +60,52 @@ public class Funcionario implements Serializable {
     //@Pattern(regex = "[0-9]{13}[0-9,A-Z]{1}", message = "Matrícula inválida")
     @PropertyDescriptor(index = 1, displayName = "Matrícula Completa", summary = true)
     private String matriculaCompleta;
-    
     //Matrícula Reduzida do Funcionário, usada no relógio
     @Length(max = 10)
-    @Column(name = "MAT_FUNC_REDUZIDA", nullable = false, length = 10)    
+    @Column(name = "MAT_FUNC_REDUZIDA", nullable = false, length = 10)
     @PropertyDescriptor(index = 2, summary = true, autoSort = true, autoFilter = true)
     private String matricula;
-
     @NotNull
     @Length(max = 50)
     @Column(name = "NOM_FUNC", nullable = false, length = 50)
     @PropertyDescriptor(index = 3, displayName = "Nome Completo", autoFilter = true, autoSort = true)
     private String nomeCompleto;
-
     @NotNull
     @Column(name = "NUM_FUNC", length = 5)
     @PropertyDescriptor(index = 6, displayName = "Nº Funcionário")
-    private Short numeroFuncionario;
-
-    @Column(name = "ORG_ORIGEM", length = 5)
+    private Integer numeroFuncionario;
+    //@Column(name = "ORG_ORIGEM", length = 5)
+    @JoinColumn(name="ORG_ORIGEM")
     @PropertyDescriptor(index = 8, displayName = "Orgão")
-    private Short orgaoOrigem;
-
+    @ManyToOne
+    private Orgao orgaoOrigem;
     @NotNull
-    @Column(name = "CARGA_HORARIA", length = 5)    
+    @Column(name = "CARGA_HORARIA", length = 5)
     @PropertyDescriptor(index = 7, displayName = "Carga Horária")
-    private Short cargaHoraria;
-
+    private Short cargaHoraria = 8;
     @NotNull
     @Column(name = "LOG_REGISTRO", length = 5)
     @PropertyDescriptor(index = 9, displayName = "Bate Ponto?")
     private Short batePonto = 0;
-
     @NotNull
     @Temporal(TemporalType.DATE)
-    @Column(name = "DAT_INI", length = 10)        
+    @Column(name = "DAT_INI", length = 10)
     @PropertyDescriptor(index = 10, displayName = "Data Início", summary = true)
     private Date dataInicio;
-
     @Column(name = "DAT_FIM", length = 10)
     @Temporal(TemporalType.DATE)
     @PropertyDescriptor(index = 11, displayName = "Data Fim", summary = false)
     private Date dataFim;
-
     @Fetch(FetchMode.JOIN)
     @ManyToOne(optional = false)
     @JoinColumn(name = "LOTACAO", referencedColumnName = "COD_LOTACAO", nullable = false)
-    @PropertyDescriptor(index = 4, displayName = "Lotação")    
+    @PropertyDescriptor(index = 4, displayName = "Lotação")
     private Lotacao lotacao;
-
     @ManyToOne(optional = false)
     @JoinColumn(name = "COD_GRADE", referencedColumnName = "COD_GRADE", nullable = false)
     @PropertyDescriptor(index = 5, displayName = "Grade", autoSort = true, autoFilter = true)
     @Fetch(FetchMode.JOIN)
     private Grade gradeHorario;
-
-//    @Column(length=20)
-//    private String login;
 
     // <editor-fold defaultstate="collapsed" desc="Get´s e Set´s">
     public String getMatriculaCompleta() {
@@ -118,19 +124,19 @@ public class Funcionario implements Serializable {
         this.nomeCompleto = nomeCompleto;
     }
 
-    public Short getNumeroFuncionario() {
+    public Integer getNumeroFuncionario() {
         return numeroFuncionario;
     }
 
-    public void setNumeroFuncionario(Short numeroFuncionario) {
+    public void setNumeroFuncionario(Integer numeroFuncionario) {
         this.numeroFuncionario = numeroFuncionario;
     }
 
-    public Short getOrgaoOrigem() {
+    public Orgao getOrgaoOrigem() {
         return orgaoOrigem;
     }
 
-    public void setOrgaoOrigem(Short orgaoOrigem) {
+    public void setOrgaoOrigem(Orgao orgaoOrigem) {
         this.orgaoOrigem = orgaoOrigem;
     }
 
@@ -198,6 +204,12 @@ public class Funcionario implements Serializable {
 //        this.login = login;
 //    }
     // </editor-fold>
+    public String registrarBatida() throws DAOValidationException, DAOConstraintException, DAOException {
+        BatidaId id = new BatidaId(Calendar.getInstance().getTime(), Integer.parseInt(getMatricula()));
+        Batida batida = new Batida(id, Short.parseShort("99"));
+        DAOFactory.getInstance().getDAO(Batida.class).save(batida);
+        return batida.toString();
+    }
 
     // <editor-fold defaultstate="collapsed" desc="equals e hashcode">
     @Override
@@ -220,7 +232,7 @@ public class Funcionario implements Serializable {
         return true;
     }
     // </editor-fold>
-    
+
     @Override
     public String toString() {
         return nomeCompleto + " [" + matricula + "]";
