@@ -120,8 +120,8 @@ public class TestModelPonto {
             fun.setGradeHorario(grade);
             fun.setBatePonto((short) 1);
             fun.setNomeCompleto("FUNCIONARIO " + i.toString());
-            fun.setNumeroFuncionario(Short.parseShort(i.toString()));
-            fun.setOrgaoOrigem(Short.parseShort(i.toString()));
+            fun.setNumeroFuncionario(i);
+            //fun.setOrgaoOrigem(Short.parseShort(i.toString()));
             fun.setLotacao(lotacao);
 
             //dao.save(fun);

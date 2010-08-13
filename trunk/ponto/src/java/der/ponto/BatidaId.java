@@ -40,6 +40,12 @@ public class BatidaId implements Serializable {
     public BatidaId() {
     }
 
+    public BatidaId(Date data, Integer numero) {
+        this.data = data;
+        this.hora = data;
+        this.numero = numero;
+    }
+
     public Date getData() {
         return data;
     }

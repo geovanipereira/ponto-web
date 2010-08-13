@@ -31,21 +31,27 @@ import javax.persistence.Table;
 @Views({
     @View(name = "ImportarBatidas",
     title = "Importar Batidas",
+    filters = "id.numero,id.data",
     header = "importarBatidas()",
     members = "id.data,id.hora,id.numero",
-    rows = 10)})
+    rows = 10,
+    template = "@PAGER+@FILTER")})
 public class Batida implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     private BatidaId id;
-    
     @Column(name = "NUM_RELOGIO", length = 5)
     @PropertyDescriptor(displayName = "Nº Relógio")
     private Short numeroRelogio;
 
     public Batida() {
         id = new BatidaId();
+    }
+
+    public Batida(BatidaId id, Short numeroRelogio) {
+        this.id = id;
+        this.numeroRelogio = numeroRelogio;
     }
 
     public BatidaId getId() {
@@ -65,8 +71,7 @@ public class Batida implements Serializable {
     }
 
     static public String importarBatidas(
-            @ParameterDescriptor(displayName="Arquivo")
-            InputStream stream)
+            @ParameterDescriptor(displayName = "Arquivo") InputStream stream)
             throws IOException, ParseException, DAOValidationException, DAOConstraintException, DAOException {
         Set<Batida> batidas = new HashSet<Batida>();
         BufferedReader leitor = null;
