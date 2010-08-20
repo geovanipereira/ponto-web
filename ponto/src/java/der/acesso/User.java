@@ -1,5 +1,6 @@
 package der.acesso;
 
+import entities.annotations.ActionDescriptor;
 import entities.annotations.PropertyDescriptor;
 import java.io.Serializable;
 import java.math.BigInteger;
@@ -146,6 +147,7 @@ public class User implements Serializable {
      * @param senha
      * @return
      */
+    @ActionDescriptor(hidden=true)
     public static String md5(String senha) {
         String sen = "";
         MessageDigest md = null;
@@ -159,6 +161,7 @@ public class User implements Serializable {
         return sen;
     }
 
+    @ActionDescriptor(hidden=true)
     public static String getCurrentUserName() {
         return (String) BackBeanViewPage.evalEL("#{SessionBean.login.username}");
     }
